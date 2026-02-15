@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Grupos de Simetría - Del Álgebra a la Geometría</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .concept-box {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .theorem-box {
+            border-left: 4px solid #8b5cf6;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+        .proof-box {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+        .example-box {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+        .warning-box {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+        .exercise-box {
+            border: 2px solid #6366f1;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+        .group-table th, .group-table td {
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .group-table th {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        .symmetry-icon {
+            transition: transform 0.3s ease;
+        }
+        .symmetry-icon:hover {
+            transform: scale(1.1);
+        }
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-purple-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Módulo 3</span>
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Álgebra Abstracta</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Grupos de Simetría</h1>
+            <p class="text-xl text-indigo-100 max-w-3xl">Del Álgebra a la Geometría: Clasificación de Simetrías en los Sólidos Platónicos</p>
+            <p class="text-indigo-200 mt-4 text-sm">PlatonicLab • Curso Universitario</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Introducción -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">1. Introducción: Simetría como Transformación</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    En los módulos anteriores estudiamos los sólidos platónicos desde perspectivas geométrica y topológica. 
+                    Ahora introducimos la herramienta más poderosa para entender su estructura interna: la <strong>teoría de grupos</strong>.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 ¿Qué es la Simetría?</h3>
+                    <p class="text-gray-800 mb-4">
+                        Una <strong>simetría</strong> de un objeto geométrico es una <strong>isometría</strong> 
+                        (transformación que preserva distancias) que mapea el objeto sobre sí mismo.
+                    </p>
+                    <p class="text-gray-700">
+                        Formalmente, para un sólido $S \subset \mathbb{R}^3$, una simetría es una función 
+                        $f: \mathbb{R}^3 \to \mathbb{R}^3$ tal que:
+                    </p>
+                    <ul class="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        <li>$f$ preserva distancias: $||f(x) - f(y)|| = ||x - y||$ para todo $x, y \in \mathbb{R}^3$</li>
+                        <li>$f(S) = S$ (el sólido es invariante bajo $f$)</li>
+                    </ul>
+                </div>
+
+                <p class="mb-4">
+                    El conjunto de todas las simetrías de un objeto forma un <strong>grupo</strong> bajo la operación 
+                    de composición. Este grupo encapsula toda la información estructural del objeto desde el punto 
+                    de vista de sus transformaciones.
+                </p>
+
+                <div class="theorem-box p-8 rounded-r-lg my-8 text-center">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">📐 Grupo de Simetría</h3>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>grupo de simetría</strong> (o grupo de isometrías) de un sólido platónico $P$ 
+                        es el conjunto:
+                    </p>
+                    <div class="text-2xl my-4 text-purple-900 font-bold mono">
+                        $$\text{Sym}(P) = \{f \in \text{Iso}(\mathbb{R}^3) : f(P) = P\}$$
+                    </div>
+                    <p class="text-gray-600">
+                        con la operación de composición de funciones.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Fundamentos de Teoría de Grupos -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">2. Fundamentos de Teoría de Grupos</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.1 Definición Axiomática de Grupo</h3>
+
+                <div class="theorem-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">📐 Definición de Grupo</h3>
+                    <p class="text-gray-800 mb-4">
+                        Un <strong>grupo</strong> es un par $(G, \cdot)$ donde $G$ es un conjunto y 
+                        $\cdot: G \times G \to G$ es una operación binaria que satisface:
+                    </p>
+                    <div class="space-y-3 text-gray-800">
+                        <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                            <p class="font-semibold">G1. Cerradura:</p>
+                            <p class="mono">$\forall a, b \in G: a \cdot b \in G$</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                            <p class="font-semibold">G2. Asociatividad:</p>
+                            <p class="mono">$\forall a, b, c \in G: (a \cdot b) \cdot c = a \cdot (b \cdot c)$</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                            <p class="font-semibold">G3. Elemento neutro:</p>
+                            <p class="mono">$\exists e \in G: \forall a \in G: e \cdot a = a \cdot e = a$</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                            <p class="font-semibold">G4. Elemento inverso:</p>
+                            <p class="mono">$\forall a \in G: \exists a^{-1} \in G: a \cdot a^{-1} = a^{-1} \cdot a = e$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.2 Tipos de Isometrías en $\mathbb{R}^3$</h3>
+
+                <p class="mb-4">
+                    Las isometrías del espacio tridimensional se clasifican en:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl symmetry-icon">🔄</span>
+                            <h4 class="text-xl font-bold text-gray-900">Rotaciones</h4>
+                        </div>
+                        <p class="text-gray-700 mb-3">
+                            Transformaciones que preservan orientación. Una rotación está determinada 
+                            por un <strong>eje</strong> y un <strong>ángulo</strong>.
+                        </p>
+                        <div class="bg-blue-50 p-3 rounded text-sm mono">
+                            $R_{\vec{n},\theta}: \mathbb{R}^3 \to \mathbb{R}^3$
+                        </div>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Determinante: $\det(R) = +1$
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl symmetry-icon">🪞</span>
+                            <h4 class="text-xl font-bold text-gray-900">Reflexiones</h4>
+                        </div>
+                        <p class="text-gray-700 mb-3">
+                            Transformaciones que invierten orientación. Una reflexión está determinada 
+                            por un <strong>plano espejo</strong>.
+                        </p>
+                        <div class="bg-purple-50 p-3 rounded text-sm mono">
+                            $S_{\Pi}: \mathbb{R}^3 \to \mathbb{R}^3$
+                        </div>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Determinante: $\det(S) = -1$
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl symmetry-icon">⏹️</span>
+                            <h4 class="text-xl font-bold text-gray-900">Traslaciones</h4>
+                        </div>
+                        <p class="text-gray-700 mb-3">
+                            Desplazamiento por un vector $\vec{v}$. Para sólidos centrados en el origen, 
+                            las traslaciones no son simetrías (excepto $\vec{v} = \vec{0}$).
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            No relevante para sólidos platónicos centrados.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl symmetry-icon">🔄🪞</span>
+                            <h4 class="text-xl font-bold text-gray-900">Rotoreflexiones</h4>
+                        </div>
+                        <p class="text-gray-700 mb-3">
+                            Composición de rotación y reflexión en un plano perpendicular al eje de rotación. 
+                            También llamadas <strong>giros impropios</strong>.
+                        </p>
+                        <p class="text-gray-600 text-sm">
+                            Determinante: $\det = -1$
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.3 Grupos Ortogonales</h3>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Grupos $O(3)$ y $SO(3)$</h3>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>grupo ortogonal</strong> $O(3)$ es el grupo de todas las isometrías 
+                        lineales de $\mathbb{R}^3$ que fijan el origen:
+                    </p>
+                    <div class="text-center text-xl mono text-blue-900 my-4">
+                        $$O(3) = \{A \in GL(3,\mathbb{R}) : A^T A = I\}$$
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>grupo ortogonal especial</strong> $SO(3)$ es el subgrupo de rotaciones:
+                    </p>
+                    <div class="text-center text-xl mono text-blue-900 my-4">
+                        $$SO(3) = \{A \in O(3) : \det(A) = +1\}$$
+                    </div>
+                    <p class="text-gray-700">
+                        $SO(3)$ tiene índice 2 en $O(3)$, y $O(3) \cong SO(3) \rtimes \mathbb{Z}_2$.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Simetrías de los Sólidos Platónicos -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Simetrías de los Sólidos Platónicos</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <p class="mb-6">
+                    Cada sólido platónico tiene un grupo de simetría específico. Clasificamos estos grupos 
+                    según si incluyen reflexiones o solo rotaciones.
+                </p>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.1 Clasificación de los Grupos</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden group-table">
+                        <thead>
+                            <tr>
+                                <th class="bg-gradient-to-r from-blue-600 to-blue-700 text-white" rowspan="2">Sólido</th>
+                                <th class="bg-gradient-to-r from-green-600 to-green-700 text-white" colspan="3">Rotaciones (SO(3))</th>
+                                <th class="bg-gradient-to-r from-purple-600 to-purple-700 text-white" colspan="3">Completas (O(3))</th>
+                            </tr>
+                            <tr>
+                                <th class="bg-green-100">Símbolo</th>
+                                <th class="bg-green-100">Orden</th>
+                                <th class="bg-green-100">Notación</th>
+                                <th class="bg-purple-100">Símbolo</th>
+                                <th class="bg-purple-100">Orden</th>
+                                <th class="bg-purple-100">Notación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">Tetraedro</td>
+                                <td>$A_4$</td>
+                                <td>12</td>
+                                <td>[3,3]⁺</td>
+                                <td>$S_4$</td>
+                                <td>24</td>
+                                <td>[3,3]</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Cubo</td>
+                                <td>$S_4$</td>
+                                <td>24</td>
+                                <td>[4,3]⁺</td>
+                                <td>$S_4 \times \mathbb{Z}_2$</td>
+                                <td>48</td>
+                                <td>[4,3]</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Octaedro</td>
+                                <td>$S_4$</td>
+                                <td>24</td>
+                                <td>[3,4]⁺</td>
+                                <td>$S_4 \times \mathbb{Z}_2$</td>
+                                <td>48</td>
+                                <td>[3,4]</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Dodecaedro</td>
+                                <td>$A_5$</td>
+                                <td>60</td>
+                                <td>[5,3]⁺</td>
+                                <td>$A_5 \times \mathbb{Z}_2$</td>
+                                <td>120</td>
+                                <td>[5,3]</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Icocaedro</td>
+                                <td>$A_5$</td>
+                                <td>60</td>
+                                <td>[3,5]⁺</td>
+                                <td>$A_5 \times \mathbb{Z}_2$</td>
+                                <td>120</td>
+                                <td>[3,5]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-red-900 mb-3">⚠️ Observación Importante</h3>
+                    <p class="text-gray-800">
+                        El cubo y el octaedro son duales, por tanto tienen el mismo grupo de simetría. 
+                        Lo mismo ocurre con el dodecaedro y el icosaedro. El tetraedro es autodual, 
+                        pero su grupo de simetría es diferente porque intercambiar vértices y caras 
+                        no produce nuevas simetrías.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.2 Ejes de Rotación del Tetraedro</h3>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Análisis del Grupo $A_4$</h3>
+                    <p class="text-gray-800 mb-4">
+                        El grupo de rotaciones del tetraedro es isomorfo al <strong>grupo alternante $A_4$</strong>, 
+                        que consta de las permutaciones pares de 4 elementos.
+                    </p>
+                    
+                    <p class="font-semibold text-amber-900 mb-2">Ejes de rotación:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                        <li><strong>4 ejes de orden 3</strong>: Pasan por un vértice y el centro de la cara opuesta. 
+                            Ángulos de rotación: $120°$ y $240°$ ($\frac{2\pi}{3}$ y $\frac{4\pi}{3}$).</li>
+                        <li><strong>3 ejes de orden 2</strong>: Pasan por los puntos medios de aristas opuestas. 
+                            Ángulo de rotación: $180°$ ($\pi$).</li>
+                    </ul>
+
+                    <p class="font-semibold text-amber-900 mb-2">Conteo de elementos:</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Identidad: 1 elemento</li>
+                        <li>Rotaciones de orden 3: 4 ejes × 2 rotaciones = 8 elementos</li>
+                        <li>Rotaciones de orden 2: 3 ejes × 1 rotación = 3 elementos</li>
+                    </ul>
+                    <p class="text-center font-bold text-amber-900 mt-3">
+                        Total: $|A_4| = 1 + 8 + 3 = 12$ ✓
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.3 Ejes de Rotación del Cubo/Octaedro</h3>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Análisis del Grupo $S_4$</h3>
+                    <p class="text-gray-800 mb-4">
+                        El grupo de rotaciones del cubo es isomorfo al <strong>grupo simétrico $S_4$</strong>, 
+                        todas las permutaciones de 4 elementos (correspondiendo a las 4 diagonales del cubo).
+                    </p>
+                    
+                    <p class="font-semibold text-amber-900 mb-2">Ejes de rotación:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                        <li><strong>3 ejes de orden 4</strong>: Pasan por centros de caras opuestas. 
+                            Ángulos: $90°, 180°, 270°$.</li>
+                        <li><strong>4 ejes de orden 3</strong>: Pasan por vértices opuestos (diagonales). 
+                            Ángulos: $120°, 240°$.</li>
+                        <li><strong>6 ejes de orden 2</strong>: Pasan por puntos medios de aristas opuestas. 
+                            Ángulo: $180°$.</li>
+                    </ul>
+
+                    <p class="font-semibold text-amber-900 mb-2">Conteo de elementos:</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Identidad: 1 elemento</li>
+                        <li>Rotaciones de orden 4: 3 ejes × 3 rotaciones = 9 elementos</li>
+                        <li>Rotaciones de orden 3: 4 ejes × 2 rotaciones = 8 elementos</li>
+                        <li>Rotaciones de orden 2: 6 ejes × 1 rotación = 6 elementos</li>
+                    </ul>
+                    <p class="text-center font-bold text-amber-900 mt-3">
+                        Total: $|S_4| = 1 + 9 + 8 + 6 = 24$ ✓
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.4 Ejes de Rotación del Dodecaedro/Icocaedro</h3>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Análisis del Grupo $A_5$</h3>
+                    <p class="text-gray-800 mb-4">
+                        El grupo de rotaciones del dodecaedro es isomorfo al <strong>grupo alternante $A_5$</strong>, 
+                        el grupo de permutaciones pares de 5 elementos. Este es el grupo de rotaciones 
+                        más complejo de los sólidos platónicos.
+                    </p>
+                    
+                    <p class="font-semibold text-amber-900 mb-2">Ejes de rotación:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                        <li><strong>6 ejes de orden 5</strong>: Pasan por centros de caras pentagonales opuestas. 
+                            Ángulos: $72°, 144°, 216°, 288°$.</li>
+                        <li><strong>10 ejes de orden 3</strong>: Pasan por vértices opuestos. 
+                            Ángulos: $120°, 240°$.</li>
+                        <li><strong>15 ejes de orden 2</strong>: Pasan por puntos medios de aristas opuestas. 
+                            Ángulo: $180°$.</li>
+                    </ul>
+
+                    <p class="font-semibold text-amber-900 mb-2">Conteo de elementos:</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Identidad: 1 elemento</li>
+                        <li>Rotaciones de orden 5: 6 ejes × 4 rotaciones = 24 elementos</li>
+                        <li>Rotaciones de orden 3: 10 ejes × 2 rotaciones = 20 elementos</li>
+                        <li>Rotaciones de orden 2: 15 ejes × 1 rotación = 15 elementos</li>
+                    </ul>
+                    <p class="text-center font-bold text-amber-900 mt-3">
+                        Total: $|A_5| = 1 + 24 + 20 + 15 = 60$ ✓
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Tablas de Caracteres -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. Representaciones y Tablas de Caracteres</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <p class="mb-6">
+                    La <strong>teoría de representaciones</strong> estudia cómo los grupos actúan sobre espacios vectoriales. 
+                    Las <strong>tablas de caracteres</strong> codifican información esencial sobre estas representaciones.
+                </p>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.1 Tabla de Caracteres de $A_4$ (Tetraedro)</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden group-table">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                                <th>$A_4$</th>
+                                <th>$e$ (1)</th>
+                                <th>$(12)(34)$ (3)</th>
+                                <th>$(123)$ (4)</th>
+                                <th>$(132)$ (4)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold bg-blue-50">$A$</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-blue-50">$E$</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>$\omega$</td>
+                                <td>$\omega^2$</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-blue-50">$E'$</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>$\omega^2$</td>
+                                <td>$\omega$</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-blue-50">$T$</td>
+                                <td>3</td>
+                                <td>-1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="text-sm text-gray-600 mb-4">
+                    Donde $\omega = e^{2\pi i/3}$ es la raíz cúbica primitiva de la unidad. 
+                    Los números entre paréntesis indican el tamaño de cada clase de conjugación.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Interpretación Geométrica</h3>
+                    <p class="text-gray-800 mb-2">
+                        <strong>Representación $T$ (triplete)</strong>: Esta es la representación natural 
+                        de $A_4$ como rotaciones en $\mathbb{R}^3$. Los caracteres indican:
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>dim($T$) = 3 (dimensión del espacio de rotaciones)</li>
+                        <li>La traza de una rotación de $180°$ es -1</li>
+                        <li>Las rotaciones de $120°$ y $240°$ tienen traza 0</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.2 Tabla de Caracteres de $A_5$ (Dodecaedro)</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden group-table">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                                <th>$A_5$</th>
+                                <th>$e$ (1)</th>
+                                <th>$(12)(34)$ (15)</th>
+                                <th>$(123)$ (20)</th>
+                                <th>$(12345)$ (12)</th>
+                                <th>$(12354)$ (12)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold bg-purple-50">$A$</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-purple-50">$T_1$</td>
+                                <td>3</td>
+                                <td>-1</td>
+                                <td>0</td>
+                                <td>$\phi$</td>
+                                <td>$1-\phi$</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-purple-50">$T_2$</td>
+                                <td>3</td>
+                                <td>-1</td>
+                                <td>0</td>
+                                <td>$1-\phi$</td>
+                                <td>$\phi$</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-purple-50">$G$</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>-1</td>
+                                <td>-1</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold bg-purple-50">$H$</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>-1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="text-sm text-gray-600 mb-4">
+                    Donde $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618$ es el <strong>número áureo</strong>. 
+                    La aparición de $\phi$ en la tabla de caracteres de $A_5$ refleja la conexión profunda 
+                    entre el dodecaedro y la proporción áurea.
+                </p>
+
+                <div class="theorem-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">📐 Teorema de Simplicidad de $A_5$</h3>
+                    <p class="text-gray-800 mb-4">
+                        El grupo $A_5$ es el grupo de rotaciones del dodecaedro/icosaedro y tiene una 
+                        propiedad algebraica notable: es <strong>simple</strong> (no tiene subgrupos normales 
+                        propios no triviales).
+                    </p>
+                    <p class="text-gray-700">
+                        Esto tiene consecuencias geométricas: no podemos construir un poliedro regular 
+                        con "media simetría" del dodecaedro. El grupo de rotaciones es atómico e indivisible.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Órbitas y Estabilizadores -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">5. Acciones de Grupos: Órbitas y Estabilizadores</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.1 Acción de Grupo sobre un Conjunto</h3>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Definición de Acción</h3>
+                    <p class="text-gray-800 mb-4">
+                        Una <strong>acción (izquierda)</strong> de un grupo $G$ sobre un conjunto $X$ es un homomorfismo 
+                        $\phi: G \to \text{Sym}(X)$, donde $\text{Sym}(X)$ es el grupo de permutaciones de $X$.
+                    </p>
+                    <p class="text-gray-700">
+                        Equivalentemente, es una función $G \times X \to X$, denotada $(g, x) \mapsto g \cdot x$, tal que:
+                    </p>
+                    <ul class="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        <li>$e \cdot x = x$ para todo $x \in X$</li>
+                        <li>$(gh) \cdot x = g \cdot (h \cdot x)$ para todo $g, h \in G$, $x \in X$</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.2 Órbitas y Estabilizadores</h3>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Órbita</h4>
+                        <p class="text-gray-700 mb-3">
+                            La <strong>órbita</strong> de un elemento $x \in X$ es el conjunto de todos 
+                            sus posibles imágenes bajo la acción de $G$:
+                        </p>
+                        <div class="bg-blue-50 p-3 rounded text-center mono text-sm">
+                            $$\text{Orb}(x) = \{g \cdot x : g \in G\}$$
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Estabilizador</h4>
+                        <p class="text-gray-700 mb-3">
+                            El <strong>estabilizador</strong> (o subgrupo de isotropía) de $x$ es el 
+                            subconjunto de $G$ que fija $x$:
+                        </p>
+                        <div class="bg-purple-50 p-3 rounded text-center mono text-sm">
+                            $$\text{Stab}(x) = \{g \in G : g \cdot x = x\}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theorem-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">📐 Teorema de la Órbita-Estabilizador</h3>
+                    <p class="text-gray-800 mb-4">
+                        Sea $G$ un grupo actuando sobre un conjunto $X$, y sea $x \in X$. Entonces existe 
+                        una biyección natural:
+                    </p>
+                    <div class="text-center text-xl mono text-purple-900 my-4">
+                        $$\text{Orb}(x) \cong G / \text{Stab}(x)$$
+                    </div>
+                    <p class="text-gray-700">
+                        En particular, si $G$ es finito:
+                    </p>
+                    <div class="text-center text-lg mono text-purple-900 my-2">
+                        $$|G| = |\text{Orb}(x)| \cdot |\text{Stab}(x)|$$
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.3 Aplicación: Conteo de Caras, Vértices y Aristas</h3>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Ejemplo: Acción de $A_4$ sobre el Tetraedro</h3>
+                    <p class="text-gray-800 mb-4">
+                        El grupo $A_4$ actúa sobre:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                        <li><strong>Conjunto de vértices</strong> $V$ (4 elementos)</li>
+                        <li><strong>Conjunto de aristas</strong> $E$ (6 elementos)</li>
+                        <li><strong>Conjunto de caras</strong> $F$ (4 elementos)</li>
+                    </ul>
+
+                    <p class="font-semibold text-amber-900 mb-2">Órbitas:</p>
+                    <p class="text-gray-700 mb-2">
+                        Dado que $A_4$ actúa transitivamente sobre vértices y caras (cualquier vértice 
+                        puede llevarse a cualquier otro mediante una simetría):
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700 mb-4">
+                        <li>$|\text{Orb}(v)| = 4$ para cualquier vértice $v$</li>
+                        <li>$|\text{Orb}(f)| = 4$ para cualquier cara $f$</li>
+                    </ul>
+
+                    <p class="font-semibold text-amber-900 mb-2">Estabilizadores:</p>
+                    <p class="text-gray-700 mb-2">
+                        Por el teorema de órbita-estabilizador:
+                    </p>
+                    <div class="bg-white p-3 rounded border-l-4 border-amber-500">
+                        <p class="mono text-sm">$|\text{Stab}(v)| = \frac{|A_4|}{|\text{Orb}(v)|} = \frac{12}{4} = 3$</p>
+                        <p class="text-gray-600 text-sm mt-1">
+                            Esto corresponde a las 3 rotaciones que fijan un vértice (incluyendo la identidad): 
+                            $\{e, r_{120°}, r_{240°}\} \cong \mathbb{Z}_3$.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Poliedros de Arquímedes -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">6. Extensión: Sólidos de Arquímedes</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <p class="mb-6">
+                    Los <strong>sólidos de Arquímedes</strong> (o poliedros semirregulares) son poliedros convexos 
+                    con caras regulares pero no necesariamente idénticas, y vértices transitivos bajo simetrías.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Definición</h3>
+                    <p class="text-gray-800">
+                        Un <strong>sólido de Arquímedes</strong> es un poliedro convexo tal que:
+                    </p>
+                    <ul class="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                        <li>Sus caras son polígonos regulares de dos o más tipos</li>
+                        <li>Sus vértices son todos congruentes (misma configuración de caras)</li>
+                        <li>Su grupo de simetrías actúa transitivamente sobre los vértices</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">6.1 Los 13 Sólidos de Arquímedes</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden group-table text-sm">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-green-600 to-green-700 text-white">
+                                <th>Nombre</th>
+                                <th>Tipo de Caras</th>
+                                <th>V</th>
+                                <th>E</th>
+                                <th>F</th>
+                                <th>Config. Vértice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">Truncated Tetrahedron</td>
+                                <td>4 triángulos, 4 hexágonos</td>
+                                <td>12</td>
+                                <td>18</td>
+                                <td>8</td>
+                                <td>3.6.6</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Cuboctahedron</td>
+                                <td>8 triángulos, 6 cuadrados</td>
+                                <td>12</td>
+                                <td>24</td>
+                                <td>14</td>
+                                <td>3.4.3.4</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Truncated Cube</td>
+                                <td>8 triángulos, 6 octógonos</td>
+                                <td>24</td>
+                                <td>36</td>
+                                <td>14</td>
+                                <td>3.8.8</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Truncated Octahedron</td>
+                                <td>6 cuadrados, 8 hexágonos</td>
+                                <td>24</td>
+                                <td>36</td>
+                                <td>14</td>
+                                <td>4.6.6</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Rhombicuboctahedron</td>
+                                <td>8 triángulos, 18 cuadrados</td>
+                                <td>24</td>
+                                <td>48</td>
+                                <td>26</td>
+                                <td>3.4.4.4</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Truncated Cuboctahedron</td>
+                                <td>12 cuadrados, 8 hexágonos, 6 octógonos</td>
+                                <td>48</td>
+                                <td>72</td>
+                                <td>26</td>
+                                <td>4.6.8</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Snub Cube</td>
+                                <td>32 triángulos, 6 cuadrados</td>
+                                <td>24</td>
+                                <td>60</td>
+                                <td>38</td>
+                                <td>3.3.3.3.4</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Icosidodecahedron</td>
+                                <td>20 triángulos, 12 pentágonos</td>
+                                <td>30</td>
+                                <td>60</td>
+                                <td>32</td>
+                                <td>3.5.3.5</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Truncated Dodecahedron</td>
+                                <td>20 triángulos, 12 decágonos</td>
+                                <td>60</td>
+                                <td>90</td>
+                                <td>32</td>
+                                <td>3.10.10</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Truncated Icosahedron</td>
+                                <td>12 pentágonos, 20 hexágonos</td>
+                                <td>60</td>
+                                <td>90</td>
+                                <td>32</td>
+                                <td>5.6.6</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Rhombicosidodecahedron</td>
+                                <td>20 triángulos, 30 cuadrados, 12 pentágonos</td>
+                                <td>60</td>
+                                <td>120</td>
+                                <td>62</td>
+                                <td>3.4.5.4</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Truncated Icosidodecahedron</td>
+                                <td>30 cuadrados, 20 hexágonos, 12 decágonos</td>
+                                <td>120</td>
+                                <td>180</td>
+                                <td>62</td>
+                                <td>4.6.10</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Snub Dodecahedron</td>
+                                <td>80 triángulos, 12 pentágonos</td>
+                                <td>60</td>
+                                <td>150</td>
+                                <td>92</td>
+                                <td>3.3.3.3.5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box p-6 rounded-r-lg my-8 border-l-4 border-green-500 bg-gradient-to-r from-green-50 to-emerald-50">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">🌟 Dato Curioso: El Balón de Fútbol</h3>
+                    <p class="text-gray-800">
+                        Un balón de fútbol moderno es un <strong>icosaedro truncado</strong>. Tiene 12 pentágonos 
+                        (de los 12 vértices del icosaedro) y 20 hexágonos (de las 20 caras triangulares). 
+                        Verificación: $V - E + F = 60 - 90 + 32 = 2$ ✓
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">6.2 Relación con los Grupos de Simetría</h3>
+
+                <p class="mb-4">
+                    Los sólidos de Arquímedes comparten grupos de simetría con los sólidos platónicos de los que derivan:
+                </p>
+
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                    <li>Los truncados del tetraedro tienen grupo de rotaciones $A_4$</li>
+                    <li>Los derivados del cubo/octaedro tienen grupo de rotaciones $S_4$</li>
+                    <li>Los derivados del dodecaedro/icosaedro tienen grupo de rotaciones $A_5$</li>
+                </ul>
+
+                <p class="mb-4">
+                    Los sólidos "snub" (cúbico y dodecaédrico) son quirales: no son congruentes con su imagen especular. 
+                    Esto significa que su grupo de simetría completo es más pequeño que el de sus primos no quirales.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Ejercicios -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. Ejercicios y Problemas</h2>
+            
+            <div class="space-y-6">
+                
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Subgrupos de $A_4$</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Encuentre todos los subgrupos de $A_4$. Demuestre que no tiene subgrupos de orden 6, 
+                        a pesar de que 6 divide a 12. ¿Qué implica esto sobre la transitividad de la acción sobre pares de vértices?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Centro del Grupo</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Determine el centro $Z(G) = \{g \in G : gh = hg \text{ para todo } h \in G\}$ de cada grupo 
+                        de rotaciones de los sólidos platónicos. ¿Qué interpretación geométrica tiene el centro?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Clases de Conjugación</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Describa las clases de conjugación de $S_4$ y relaciónelas con los tipos de ejes de rotación del cubo. 
+                        ¿Por qué las rotaciones de $180°$ alrededor de ejes que pasan por aristas forman una sola clase de conjugación?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Representación de Permutaciones</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        El grupo $S_4$ actúa sobre las 4 diagonales del cubo. Escriba la matriz de permutación 
+                        correspondiente a una rotación de $120°$ alrededor de una diagonal. ¿Cuál es su traza y 
+                        cómo se relaciona con la tabla de caracteres?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Simetrías del Icosaedro</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Demuestre que $A_5$ es simple (no tiene subgrupos normales propios no triviales) usando 
+                        la acción sobre el icosaedro. Sugerencia: Suponga que $N \trianglelefteq A_5$ y analice 
+                        las órbitas de la acción de $N$ sobre los vértices.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">6</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Cuboctaedro</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        El cuboctaedro se obtiene truncando un cubo hasta que los cuadrados se convierten en triángulos. 
+                        Calcule su grupo de simetría y demuestre que es isomorfo a $S_4$. ¿Cuántas clases de conjugación 
+                        tiene su grupo de rotaciones?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">7</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Quiralidad</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Un objeto es <strong>quiral</strong> si no es congruente con su imagen especular. 
+                        Demuestre que el snub cube es quiral exhibiendo una rotación impropia que lo mapea 
+                        sobre su imagen especular. ¿Cuál es el índice del grupo de rotaciones en el grupo completo?
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Resumen -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">8. Resumen del Módulo</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
+                    <h3 class="text-xl font-bold text-indigo-900 mb-6">📋 Conceptos Clave</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Grupo de Simetría</h4>
+                            <p class="text-gray-700 text-sm">
+                                Conjunto de isometrías que preservan el sólido, con la operación de composición.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Grupos $A_4$, $S_4$, $A_5$</h4>
+                            <p class="text-gray-700 text-sm">
+                                Tetraedro: $A_4$ (orden 12). Cubo/Octaedro: $S_4$ (orden 24). Dodecaedro/Icocaedro: $A_5$ (orden 60).
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Clasificación de Ejes</h4>
+                            <p class="text-gray-700 text-sm">
+                                Ejes por vértices, caras y aristas. Órdenes de rotación determinados por la geometría.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Teorema de Órbita-Estabilizador</h4>
+                            <p class="text-gray-700 text-sm">
+                                $|G| = |\text{Orb}(x)| \cdot |\text{Stab}(x)|$. Conecta acciones de grupos con conteo.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Tablas de Caracteres</h4>
+                            <p class="text-gray-700 text-sm">
+                                Codifican representaciones irreducibles. El número áureo $\phi$ aparece en $A_5$.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Sólidos de Arquímedes</h4>
+                            <p class="text-gray-700 text-sm">
+                                13 poliedros semirregulares. Comparten grupos de simetría con los platónicos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theorem-box p-6 rounded-r-lg mt-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">🎯 Resultados Fundamentales</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-800">
+                        <li>Los grupos de rotaciones de los sólidos platónicos son $A_4$, $S_4$ y $A_5$.</li>
+                        <li>Estos grupos actúan transitivamente sobre vértices, aristas y caras.</li>
+                        <li>$A_5$ es el único grupo simple entre los tres, reflejando la rigidez del dodecaedro.</li>
+                        <li>Las tablas de caracteres conectan propiedades geométricas con algebraicas.</li>
+                        <li>La dualidad de poliedros corresponde a dualidad de grupos en teoría de representaciones.</li>
+                        <li>Los sólidos de Arquímedes extienden la clasificación manteniendo transitividad de vértices.</li>
+                    </ul>
+                </div>
+
+                <p class="mt-8">
+                    En el próximo módulo, exploraremos <strong>aplicaciones modernas</strong> de estos conceptos: 
+                    cristalografía, virología, química molecular y gráficos por computadora.
+                </p>
+            </div>
+        </section>
+
+        <!-- Referencias -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Referencias</h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">📚 Bibliografía</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">[1]</span>
+                        <span>Armstrong, M. A. (1988). <em>Groups and Symmetry</em>. Springer-Verlag.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">[2]</span>
+                        <span>Coxeter, H. S. M. (1973). <em>Regular Polytopes</em>. Dover Publications.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">[3]</span>
+                        <span>Artin, M. (2011). <em>Algebra</em> (2nd ed.). Pearson.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">[4]</span>
+                        <span>Fulton, W. & Harris, J. (1991). <em>Representation Theory: A First Course</em>. Springer.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">[5]</span>
+                        <span>Conway, J. H., Burgiel, H., & Goodman-Strauss, C. (2008). <em>The Symmetries of Things</em>. A K Peters.</span>
+                    </li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-4 mt-8">🌐 Recursos Complementarios</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>PlatonicLab - Visualizaciones interactivas de grupos de simetría y ejes de rotación.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>GroupNames.org - Base de datos exhaustiva de grupos finitos y sus propiedades.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>Orbiter - Software para visualización de órbitas bajo acciones de grupos.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 mb-2">Módulo 3: Grupos de Simetría - Del Álgebra a la Geometría</p>
+            <p class="text-gray-500 text-sm">PlatonicLab • Curso de Matemáticas Visuales</p>
+            <p class="text-gray-600 text-xs mt-4">EigenLab Mathematics • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Render LaTeX formulas
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+
+</body>
+</html>

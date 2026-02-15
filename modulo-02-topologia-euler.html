@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: La Fórmula de Euler - Topología de Poliedros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .concept-box {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .theorem-box {
+            border-left: 4px solid #8b5cf6;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+        .proof-box {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+        .example-box {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+        .warning-box {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+        .exercise-box {
+            border: 2px solid #6366f1;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+        .formula-display {
+            background: linear-gradient(120deg, #fef3c7 0%, #fef3c7 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+        }
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-900 via-purple-800 to-indigo-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Módulo 2</span>
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Topología</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">La Fórmula de Euler</h1>
+            <p class="text-xl text-purple-100 max-w-3xl">Topología de Poliedros: De la Geometría a la Invarianza</p>
+            <p class="text-purple-200 mt-4 text-sm">PlatonicLab • Curso Universitario</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Introducción -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">1. Introducción: Más Allá de la Geometría Métrica</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    En el Módulo 1 estudiamos los sólidos platónicos desde una perspectiva <strong>geométrica</strong>: 
+                    longitudes de aristas, ángulos diedros, volúmenes, áreas. En este módulo, cambiamos radicalmente 
+                    de perspectiva y nos adentramos en el mundo de la <strong>topología</strong>.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 ¿Qué es la Topología?</h3>
+                    <p class="text-gray-800 mb-4">
+                        La topología es la rama de las matemáticas que estudia las propiedades de los objetos 
+                        geométricos que se conservan bajo <strong>deformaciones continuas</strong>: estiramientos, 
+                        compresiones, torsiones, pero sin romper ni pegar.
+                    </p>
+                    <p class="text-gray-700 italic">
+                        Un topólogo no distingue entre una taza de café y una dona (ambos tienen un agujero), 
+                        pero sí distingue entre una esfera y un toro (diferente "número de agujeros").
+                    </p>
+                </div>
+
+                <p class="mb-4">
+                    La <strong>fórmula de Euler</strong> es uno de los primeros y más importantes resultados 
+                    topológicos. Descubierta por Leonhard Euler en 1750, establece una relación sorprendente 
+                    entre los elementos de un poliedro que permanece invariante bajo deformaciones continuas.
+                </p>
+
+                <div class="theorem-box p-8 rounded-r-lg my-8 text-center">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">📐 La Fórmula de Euler</h3>
+                    <p class="text-gray-800 mb-4">
+                        Para cualquier poliedro convexo (y más generalmente, para cualquier poliedro 
+                        homeomorfo a una esfera):
+                    </p>
+                    <div class="text-4xl my-6 text-purple-900 font-bold">
+                        $$V - E + F = 2$$
+                    </div>
+                    <p class="text-gray-600">
+                        donde $V$ = vértices, $E$ = aristas, $F$ = caras
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Historia -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">2. Historia y Contexto</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-6">
+                    Aunque la fórmula lleva el nombre de Euler, hay evidencia de que René Descartes 
+                    la conocía en una forma equivalente ya en 1630, aunque su manuscrito fue publicado 
+                    póstumamente en 1860.
+                </p>
+
+                <div class="bg-white rounded-xl shadow-md p-8 my-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Línea del Tiempo</h3>
+                    
+                    <div class="relative border-l-4 border-purple-300 ml-4 space-y-8">
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-1 w-6 h-6 bg-purple-500 rounded-full border-4 border-white"></div>
+                            <p class="text-sm text-purple-600 font-semibold">1630</p>
+                            <p class="text-gray-800"><strong>René Descartes</strong> escribe "De Solidorum Elementis" 
+                            con una forma equivalente de la fórmula.</p>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-1 w-6 h-6 bg-purple-600 rounded-full border-4 border-white"></div>
+                            <p class="text-sm text-purple-600 font-semibold">1750</p>
+                            <p class="text-gray-800"><strong>Leonhard Euler</strong> presenta la fórmula 
+                            $V - E + F = 2$ en una carta a Christian Goldbach.</p>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-1 w-6 h-6 bg-purple-700 rounded-full border-4 border-white"></div>
+                            <p class="text-sm text-purple-600 font-semibold">1752</p>
+                            <p class="text-gray-800">Euler publica la primera demostración, aunque con algunas laguras lógicas.</p>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-1 w-6 h-6 bg-indigo-600 rounded-full border-4 border-white"></div>
+                            <p class="text-sm text-purple-600 font-semibold">1813</p>
+                            <p class="text-gray-800"><strong>Augustin-Louis Cauchy</strong> da la primera demostración rigurosa.</p>
+                        </div>
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute -left-3 top-1 w-6 h-6 bg-indigo-700 rounded-full border-4 border-white"></div>
+                            <p class="text-sm text-purple-600 font-semibold">1860</p>
+                            <p class="text-gray-800">El manuscrito de Descartes es finalmente publicado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Anécdota Histórica</h3>
+                    <p class="text-gray-800">
+                        Euler no estaba satisfecho con su primera demostración. En su carta a Goldbach, 
+                        escribió que había intentado probar la fórmula "por muchos métodos diferentes, 
+                        pero ninguno me satisfacía completamente". Esta humildad intelectual es característica 
+                        de los grandes matemáticos: la búsqueda de la rigurosidad absoluta.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Demostración de Euler -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Demostración de la Fórmula de Euler</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-6">
+                    Presentaremos una demostración constructiva basada en el método de "eliminación de aristas", 
+                    similar al enfoque de Cauchy pero más accesible visualmente.
+                </p>
+
+                <div class="proof-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-4">📝 Demostración del Teorema de Euler</h3>
+                    
+                    <p class="font-semibold text-green-900 mb-2">Teorema:</p>
+                    <p class="text-gray-800 mb-4">
+                        Para cualquier poliedro convexo, $V - E + F = 2$.
+                    </p>
+
+                    <p class="font-semibold text-green-900 mb-2">Demostración:</p>
+                    
+                    <div class="space-y-4 text-gray-800">
+                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                            <p class="font-semibold mb-2">Paso 1: Proyección</p>
+                            <p>
+                                Proyectamos el poliedro sobre un plano, eliminando una cara (como si fuera la "tapa" 
+                                de una caja). Esto nos da un <strong>grafo planar</strong> con $F-1$ regiones (caras) 
+                                en el plano.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                            <p class="font-semibold mb-2">Paso 2: Triangulación</p>
+                            <p>
+                                Si alguna cara tiene más de 3 lados, la dividimos en triángulos agregando diagonales. 
+                                Cada diagonal agrega 1 arista y 1 cara, por tanto $V - E + F$ <strong>no cambia</strong>.
+                            </p>
+                            <p class="mt-2 text-sm text-gray-600">
+                                $(V) - (E+1) + (F+1) = V - E + F$ ✓
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                            <p class="font-semibold mb-2">Paso 3: Eliminación de aristas</p>
+                            <p>
+                                Ahora eliminamos aristas de los triángulos exteriores (que tienen exactamente 
+                                una arista en el borde exterior):
+                            </p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Si el triángulo tiene 1 arista exterior: eliminamos esa arista. 
+                                    Pierde 1 arista, 1 cara. $V - E + F$ no cambia.</li>
+                                <li>Si el triángulo tiene 2 aristas exteriores: eliminamos ambas y el vértice común. 
+                                    Pierde 1 vértice, 2 aristas, 1 cara. $V - E + F$ no cambia: 
+                                    $(V-1) - (E-2) + (F-1) = V - E + F$.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                            <p class="font-semibold mb-2">Paso 4: Caso final</p>
+                            <p>
+                                Continuamos hasta que solo queda <strong>un triángulo</strong>:
+                            </p>
+                            <p class="text-center font-mono text-lg my-2">
+                                $V = 3$, $E = 3$, $F = 1$ (la cara interior) + 1 (exterior infinita) = 2
+                            </p>
+                            <p class="text-center font-mono text-lg">
+                                $V - E + F = 3 - 3 + 2 = 2$ ✓
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="mt-4 text-green-900 font-semibold">
+                        ∎ Q.E.D. (Quod Erat Demonstrandum)
+                    </p>
+                </div>
+
+                <div class="warning-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-red-900 mb-3">⚠️ Condiciones Necesarias</h3>
+                    <p class="text-gray-800 mb-4">
+                        La demostración anterior requiere que el poliedro sea <strong>homeomorfo a una esfera</strong>. 
+                        Esto significa que debe ser:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Convexo</strong>: Cualquier segmento entre dos puntos del interior está contenido en el interior.</li>
+                        <li><strong>Simple</strong>: No tiene "agujeros" (como un toro).</li>
+                        <li><strong>Conexo</strong>: Es una sola pieza (no hay partes separadas).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- La Característica de Euler -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. La Característica de Euler: Un Invariante Topológico</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-6">
+                    El número $\chi = V - E + F$ se denomina <strong>característica de Euler</strong> 
+                    y es uno de los invariantes topológicos más fundamentales.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Invariante Topológico</h3>
+                    <p class="text-gray-800 mb-4">
+                        Una propiedad es un <strong>invariante topológico</strong> si no cambia bajo 
+                        homeomorfismos (deformaciones continuas biyectivas con inversa continua).
+                    </p>
+                    <p class="text-gray-700">
+                        La característica de Euler es invariante: si deformamos un poliedro 
+                        (sin romper ni pegar), $\chi$ permanece constante.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.1 Verificación en los Sólidos Platónicos</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Sólido</th>
+                                <th class="px-6 py-4 text-center font-semibold">V</th>
+                                <th class="px-6 py-4 text-center font-semibold">E</th>
+                                <th class="px-6 py-4 text-center font-semibold">F</th>
+                                <th class="px-6 py-4 text-center font-semibold">χ = V - E + F</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-purple-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Tetraedro</td>
+                                <td class="px-6 py-4 text-center font-mono">4</td>
+                                <td class="px-6 py-4 text-center font-mono">6</td>
+                                <td class="px-6 py-4 text-center font-mono">4</td>
+                                <td class="px-6 py-4 text-center font-mono font-bold text-green-600">4 - 6 + 4 = 2</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Cubo</td>
+                                <td class="px-6 py-4 text-center font-mono">8</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono">6</td>
+                                <td class="px-6 py-4 text-center font-mono font-bold text-green-600">8 - 12 + 6 = 2</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Octaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">6</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono">8</td>
+                                <td class="px-6 py-4 text-center font-mono font-bold text-green-600">6 - 12 + 8 = 2</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Dodecaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">20</td>
+                                <td class="px-6 py-4 text-center font-mono">30</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono font-bold text-green-600">20 - 30 + 12 = 2</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Icocaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono">30</td>
+                                <td class="px-6 py-4 text-center font-mono">20</td>
+                                <td class="px-6 py-4 text-center font-mono font-bold text-green-600">12 - 30 + 20 = 2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="theorem-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">📐 Teorema de Homeomorfismo</h3>
+                    <p class="text-gray-800 mb-4">
+                        Todos los sólidos platónicos son <strong>homeomorfos entre sí</strong> y homeomorfos a la esfera $S^2$.
+                    </p>
+                    <p class="text-gray-700">
+                        Esto significa que podemos "inflar" cualquier sólido platónico hasta obtener una esfera 
+                        perfecta, y viceversa, sin romper ni pegar. Por tanto, todos tienen la misma 
+                        característica de Euler: $\chi = 2$.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.2 Otras Superficies: Más Allá de la Esfera</h3>
+
+                <p class="mb-4">
+                    La característica de Euler depende de la <strong>topología de la superficie</strong>, 
+                    no solo del poliedro. Para superficies diferentes a la esfera, $\chi$ cambia:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Toro (Donut)</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <p class="text-3xl font-bold text-purple-900">χ = 0</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Ejemplo: Poliedro toroidal con $V=16$, $E=32$, $F=16$.
+                            $16 - 32 + 16 = 0$
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Doble Toro</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <p class="text-3xl font-bold text-purple-900">χ = -2</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Superficie con 2 agujeros (como un pretzel de 2 orificios).
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Superficie de Género g</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <p class="text-3xl font-bold text-purple-900">χ = 2 - 2g</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Donde $g$ es el número de agujeros (género de la superficie).
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Proyectivo (ℝP²)</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <p class="text-3xl font-bold text-purple-900">χ = 1</p>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Superficie no orientable. No puede embeberse en ℝ³ sin autointersección.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Ejemplo: Poliedro Toroidal</h3>
+                    <p class="text-gray-800 mb-4">
+                        Consideremos un prisma cuadrado con sus tapas superiores e inferiores divididas 
+                        en 4 cuadrados cada una, y luego unimos los extremos para formar un toro:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                        <li>$V = 16$ vértices (4 círculos de 4 vértices cada uno)</li>
+                        <li>$E = 32$ aristas</li>
+                        <li>$F = 16$ caras (4×4 cuadrados)</li>
+                    </ul>
+                    <p class="text-center font-mono text-lg text-amber-900">
+                        χ = 16 - 32 + 16 = 0 ✓
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Aplicaciones y Extensiones -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">5. Aplicaciones y Extensiones</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.1 Teorema de los Cuatro Colores</h3>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Conexión con la Fórmula de Euler</h3>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>Teorema de los Cuatro Colores</strong> establece que cualquier mapa planar 
+                        puede colorearse con 4 colores de modo que regiones adyacentes tengan colores distintos.
+                    </p>
+                    <p class="text-gray-700">
+                        La demostración de este teorema (Appel y Haken, 1976) utiliza fuertemente propiedades 
+                        derivadas de la fórmula de Euler y técnicas de reducción de grafos.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.2 Dualidad de Poliedros</h3>
+
+                <p class="mb-4">
+                    La operación de <strong>dualidad</strong> intercambia vértices por caras. Si aplicamos 
+                    la fórmula de Euler al dual $P^*$ de un poliedro $P$:
+                </p>
+
+                <div class="bg-gray-100 p-6 rounded-lg my-6 text-center">
+                    <p class="font-mono text-lg mb-2">
+                        Si $P$ tiene $(V, E, F)$, entonces $P^*$ tiene $(F, E, V)$
+                    </p>
+                    <p class="font-mono text-lg">
+                        $\chi(P^*) = F - E + V = V - E + F = \chi(P) = 2$ ✓
+                    </p>
+                </div>
+
+                <p class="mb-4">
+                    Esto demuestra algebraicamente que la dualidad preserva la característica de Euler, 
+                    lo cual es consistente con el hecho de que el dual de un poliedro esferico es también esférico.
+                </p>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Poliedro</th>
+                                <th class="px-6 py-4 text-center font-semibold">(V, E, F)</th>
+                                <th class="px-6 py-4 text-center font-semibold">Dual</th>
+                                <th class="px-6 py-4 text-center font-semibold">(V', E', F')</th>
+                                <th class="px-6 py-4 text-center font-semibold">χ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Tetraedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(4, 6, 4)</td>
+                                <td class="px-6 py-4 text-center">Tetraedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(4, 6, 4)</td>
+                                <td class="px-6 py-4 text-center font-bold text-green-600">2</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Cubo</td>
+                                <td class="px-6 py-4 text-center font-mono">(8, 12, 6)</td>
+                                <td class="px-6 py-4 text-center">Octaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(6, 12, 8)</td>
+                                <td class="px-6 py-4 text-center font-bold text-green-600">2</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Octaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(6, 12, 8)</td>
+                                <td class="px-6 py-4 text-center">Cubo</td>
+                                <td class="px-6 py-4 text-center font-mono">(8, 12, 6)</td>
+                                <td class="px-6 py-4 text-center font-bold text-green-600">2</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Dodecaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(20, 30, 12)</td>
+                                <td class="px-6 py-4 text-center">Icocaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(12, 30, 20)</td>
+                                <td class="px-6 py-4 text-center font-bold text-green-600">2</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Icocaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(12, 30, 20)</td>
+                                <td class="px-6 py-4 text-center">Dodecaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">(20, 30, 12)</td>
+                                <td class="px-6 py-4 text-center font-bold text-green-600">2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.3 En Dimensión Superior: Polítopos 4D</h3>
+
+                <p class="mb-4">
+                    La fórmula de Euler se generaliza a dimensiones superiores. Para un polítopo 4-dimensional 
+                    con $N_0$ vértices, $N_1$ aristas, $N_2$ caras (2D), y $N_3$ celdas (3D):
+                </p>
+
+                <div class="theorem-box p-8 rounded-r-lg my-8 text-center">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">Fórmula de Euler-Poincaré (4D)</h3>
+                    <div class="text-3xl my-4 text-purple-900 font-bold">
+                        $$N_0 - N_1 + N_2 - N_3 = 0$$
+                    </div>
+                    <p class="text-gray-600">
+                        Nota: Para polítopos esféricos en 4D, la característica alternada es 0, no 2.
+                    </p>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">💡 Ejemplo: 5-Celda (4-Simplex)</h3>
+                    <p class="text-gray-800 mb-4">
+                        El análogo 4D del tetraedro tiene:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                        <li>$N_0 = 5$ vértices</li>
+                        <li>$N_1 = 10$ aristas</li>
+                        <li>$N_2 = 10$ caras triangulares</li>
+                        <li>$N_3 = 5$ celdas tetraédricas</li>
+                    </ul>
+                    <p class="text-center font-mono text-lg text-amber-900">
+                        $5 - 10 + 10 - 5 = 0$ ✓
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Ejercicios y Problemas -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">6. Ejercicios y Problemas</h2>
+            
+            <div class="space-y-6">
+                
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Problema Básico</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Un poliedro convexo tiene 12 vértices y 18 aristas. ¿Cuántas caras tiene? 
+                        Verifique su respuesta usando la fórmula de Euler.
+                    </p>
+                    <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-sm">
+                        Ver solución
+                    </button>
+                    <div class="hidden mt-4 bg-white p-4 rounded border-l-4 border-indigo-500">
+                        <p class="font-semibold text-indigo-900 mb-2">Solución:</p>
+                        <p class="mono text-sm mb-2">Por la fórmula de Euler: $V - E + F = 2$</p>
+                        <p class="mono text-sm mb-2">$12 - 18 + F = 2$</p>
+                        <p class="mono text-sm mb-2">$F = 2 + 18 - 12 = 8$</p>
+                        <p class="text-gray-700">El poliedro tiene <strong>8 caras</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Poliedro de Cauchy</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Demuestre que en cualquier poliedro convexo, existe al menos una cara que es 
+                        un triángulo, un cuadrilátero o un pentágono. 
+                        <em>Sugerencia: Use la fórmula de Euler y desigualdades.</em>
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Tetraedro Compuesto</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Se forman dos tetraedros regulares inscritos en un cubo (usando vértices alternados). 
+                        Calcule $V$, $E$, $F$ de la unión de ambos tetraedros y verifique la fórmula de Euler. 
+                        ¿Qué sucede con las aristas que se intersectan?
+                    </p>
+                    <p class="text-gray-600 text-sm italic mt-2">
+                        Nota: Esta figura se conoce como <strong>estrella octángula</strong>.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Truncamiento</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Al truncar los vértices de un cubo (cortando cada esquina), obtenemos un 
+                        <strong>cubo truncado</strong>. Si truncamos de modo que las nuevas caras sean 
+                        triángulos equiláteros y las caras octogonales sean regulares, calcule $V$, $E$, $F$ 
+                        y verifique la fórmula de Euler.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Dualidad y Euler</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Sea $P$ un poliedro con $V$ vértices, $E$ aristas y $F$ caras. Su dual $P^*$ tiene 
+                        $V^* = F$, $E^* = E$, $F^* = V$. Demuestre rigurosamente que 
+                        $\chi(P^*) = \chi(P)$ para cualquier poliedro.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">6</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Extensión al Toro</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Un prisma cuadrado de altura $h$ tiene sus tapas superior e inferior divididas 
+                        en una cuadrícula de $n \times n$ cuadrados. Al identificar la tapa superior con 
+                        la inferior (con un desplazamiento opcional), formamos un toro poliédrico. 
+                        Demuestre que $\chi = 0$ independientemente de $n$.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">7</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Teorema de Descartes</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Descartes demostró que para cualquier poliedro convexo, la suma de los ángulos 
+                        sólidos en todos los vértices es igual a $4\pi$ (ángulo sólido de la esfera completa). 
+                        Investigue la relación entre este teorema y la fórmula de Euler.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Resumen y Conclusión -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. Resumen del Módulo</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-8 rounded-xl border border-purple-200">
+                    <h3 class="text-xl font-bold text-purple-900 mb-6">📋 Conceptos Clave</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">La Fórmula de Euler</h4>
+                            <p class="text-gray-700 text-sm">
+                                $V - E + F = 2$ para poliedros homeomorfos a la esfera.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Característica de Euler</h4>
+                            <p class="text-gray-700 text-sm">
+                                $\chi = V - E + F$ es un invariante topológico.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Topología</h4>
+                            <p class="text-gray-700 text-sm">
+                                Estudia propiedades invariantes bajo deformaciones continuas.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Homeomorfismo</h4>
+                            <p class="text-gray-700 text-sm">
+                                Deformación biyectiva continua con inversa continua.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Dualidad</h4>
+                            <p class="text-gray-700 text-sm">
+                                Intercambio vértices ↔ caras. Preserva $\chi$.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Otras Superficies</h4>
+                            <p class="text-gray-700 text-sm">
+                                Toro: $\chi = 0$; Doble toro: $\chi = -2$; Género $g$: $\chi = 2 - 2g$.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theorem-box p-6 rounded-r-lg mt-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">🎯 Resultados Fundamentales</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-800">
+                        <li>Todos los sólidos platónicos tienen $\chi = 2$ (son homeomorfos a la esfera).</li>
+                        <li>La fórmula de Euler es válida para cualquier poliedro convexo.</li>
+                        <li>La característica de Euler distingue topológicamente diferentes superficies.</li>
+                        <li>En dimensión $n$, la fórmula de Euler-Poincaré involucra suma alternada de celdas.</li>
+                        <li>La dualidad preserva la característica de Euler: $\chi(P^*) = \chi(P)$.</li>
+                    </ul>
+                </div>
+
+                <p class="mt-8">
+                    En el próximo módulo, exploraremos los <strong>grupos de simetría</strong> de los sólidos platónicos, 
+                    conectando la topología con el álgebra abstracta y la teoría de grupos.
+                </p>
+            </div>
+        </section>
+
+        <!-- Referencias -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Referencias</h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">📚 Bibliografía</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-purple-600 font-bold">[1]</span>
+                        <span>Euler, L. (1758). "Elementa doctrinae solidorum". <em>Novi Commentarii Academiae Scientiarum Imperialis Petropolitanae</em>.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-purple-600 font-bold">[2]</span>
+                        <span>Cauchy, A. L. (1813). "Recherches sur les polyèdres". <em>Journal de l'École Polytechnique</em>.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-purple-600 font-bold">[3]</span>
+                        <span>Lakatos, I. (1976). <em>Proofs and Refutations: The Logic of Mathematical Discovery</em>. Cambridge University Press.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-purple-600 font-bold">[4]</span>
+                        <span>Richeson, D. S. (2008). <em>Euler's Gem: The Polyhedron Formula and the Birth of Topology</em>. Princeton University Press.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-purple-600 font-bold">[5]</span>
+                        <span>Weeks, J. R. (2001). <em>The Shape of Space</em> (2nd ed.). Marcel Dekker.</span>
+                    </li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-4 mt-8">🌐 Recursos Complementarios</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>PlatonicLab - Laboratorio interactivo con visualizaciones 3D de poliedros y sus características.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>Cut-the-Knot - Demostraciones interactivas de la fórmula de Euler.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>3D-XplorMath - Software de visualización de poliedros y superficies topológicas.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 mb-2">Módulo 2: La Fórmula de Euler - Topología de Poliedros</p>
+            <p class="text-gray-500 text-sm">PlatonicLab • Curso de Matemáticas Visuales</p>
+            <p class="text-gray-600 text-xs mt-4">EigenLab Mathematics • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Render LaTeX formulas
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+
+</body>
+</html>

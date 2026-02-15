@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Geometría Moderna - Teoría de Grafos y Optimización</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .concept-box {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .theorem-box {
+            border-left: 4px solid #8b5cf6;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+        .example-box {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+        .highlight-box {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+        .algorithm-box {
+            border-left: 4px solid #ec4899;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+        }
+        .exercise-box {
+            border: 2px solid #6366f1;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-rose-900 via-pink-800 to-orange-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Módulo 5</span>
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Matemáticas Discretas</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Geometría Moderna</h1>
+            <p class="text-xl text-rose-100 max-w-3xl">Teoría de Grafos, Optimización Combinatoria y Algoritmos en Poliedros</p>
+            <p class="text-rose-200 mt-4 text-sm">PlatonicLab • Curso Universitario</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Introducción -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">1. Introducción: De la Geometría Continua a la Discreta</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    En los módulos anteriores hemos explorado los sólidos platónicos desde perspectivas 
+                    geométrica, topológica, algebraica y dimensional. Ahora cambiamos de paradigma: 
+                    estudiamos los poliedros como <strong>objetos discretos</strong> mediante la teoría de grafos 
+                    y la optimización combinatoria.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 ¿Por Qué Grafos?</h3>
+                    <p class="text-gray-800 mb-4">
+                        Un poliedro puede representarse como un <strong>grafo</strong> donde:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Los <strong>vértices</strong> son nodos del grafo</li>
+                        <li>Las <strong>aristas</strong> son las conexiones entre nodos</li>
+                        <li>Las <strong>caras</strong> son ciclos en el grafo</li>
+                    </ul>
+                    <p class="text-gray-700 mt-3">
+                        Esta representación permite aplicar poderosas herramientas de teoría de grafos, 
+                        algoritmos, y optimización combinatoria.
+                    </p>
+                </div>
+
+                <p class="mb-4">
+                    En este módulo exploraremos:
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🕸️</span>
+                            <h3 class="text-xl font-bold text-gray-900">Teoría de Grafos</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Grafos planares, coloración, caminos hamiltonianos, y grafos de poliedros.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">⚡</span>
+                            <h3 class="text-xl font-bold text-gray-900">Optimización</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Problemas de empaquetamiento, recubrimiento mínimo, y algoritmos eficientes.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">💻</span>
+                            <h3 class="text-xl font-bold text-gray-900">Algoritmos</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">
+                            Complejidad computacional, algoritmos de aproximación, y grafos en computación.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Grafos de Poliedros -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">2. Grafos de Poliedros</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.1 Definición</h3>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Grafo Esqueleto</h3>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>grafo esqueleto</strong> G(P) de un poliedro P es el grafo formado por:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Vértices del grafo:</strong> Los vértices geométricos de P</li>
+                        <li><strong>Aristas del grafo:</strong> Las aristas geométricas de P</li>
+                    </ul>
+                    <p class="text-gray-700 mt-3">
+                        Este grafo captura la <strong>estructura combinatoria</strong> del poliedro.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.2 Grafos Planares</h3>
+
+                <div class="theorem-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">📐 Teorema de Kuratowski (1930)</h3>
+                    <p class="text-gray-800 mb-4">
+                        Un grafo es planar si y solo si <strong>no contiene</strong> subgrafos homeomorfos a:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>K_5:</strong> El grafo completo de 5 vértices</li>
+                        <li><strong>K_{3,3}:</strong> El grafo bipartito completo (3,3)</li>
+                    </ul>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 Verificación en Sólidos Platónicos</h3>
+                    <p class="text-gray-800 mb-4">
+                        Los grafos de los sólidos platónicos son planares:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Tetraedro:</strong> K_4 (completo de 4 vértices) - planar</li>
+                        <li><strong>Cubo:</strong> Grafo cúbico bipartito - planar</li>
+                        <li><strong>Octaedro:</strong> K_{2,2,2} - planar</li>
+                        <li><strong>Dodecaedro:</strong> Grafo cúbico - planar</li>
+                        <li><strong>Icosaedro:</strong> Grafo 5-regular - planar</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.3 Propiedades de los Grafos</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-rose-600 to-rose-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Sólido</th>
+                                <th class="px-6 py-4 text-center font-semibold">V</th>
+                                <th class="px-6 py-4 text-center font-semibold">E</th>
+                                <th class="px-6 py-4 text-center font-semibold">Grado</th>
+                                <th class="px-6 py-4 text-center font-semibold">Regular</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-rose-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Tetraedro</td>
+                                <td class="px-6 py-4 text-center font-mono">4</td>
+                                <td class="px-6 py-4 text-center font-mono">6</td>
+                                <td class="px-6 py-4 text-center font-mono">3</td>
+                                <td class="px-6 py-4 text-center">Sí</td>
+                            </tr>
+                            <tr class="hover:bg-rose-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Cubo</td>
+                                <td class="px-6 py-4 text-center font-mono">8</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono">3</td>
+                                <td class="px-6 py-4 text-center">Sí</td>
+                            </tr>
+                            <tr class="hover:bg-rose-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Octaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">6</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono">4</td>
+                                <td class="px-6 py-4 text-center">Sí</td>
+                            </tr>
+                            <tr class="hover:bg-rose-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Dodecaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">20</td>
+                                <td class="px-6 py-4 text-center font-mono">30</td>
+                                <td class="px-6 py-4 text-center font-mono">3</td>
+                                <td class="px-6 py-4 text-center">Sí</td>
+                            </tr>
+                            <tr class="hover:bg-rose-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Icosaedro</td>
+                                <td class="px-6 py-4 text-center font-mono">12</td>
+                                <td class="px-6 py-4 text-center font-mono">30</td>
+                                <td class="px-6 py-4 text-center font-mono">5</td>
+                                <td class="px-6 py-4 text-center">Sí</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Coloración de Grafos -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Coloración de Grafos y el Teorema de los Cuatro Colores</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.1 Definición de Coloración</h3>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Coloración de Vértices</h3>
+                    <p class="text-gray-800 mb-4">
+                        Una <strong>k-coloración</strong> de un grafo G es una asignación de k colores a los vértices 
+                        tal que vértices adyacentes tienen colores distintos.
+                    </p>
+                    <p class="text-gray-700">
+                        El <strong>número cromático</strong> χ(G) es el mínimo k para el cual existe una k-coloración.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.2 Número Cromático de los Sólidos Platónicos</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-pink-600 to-pink-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Sólido</th>
+                                <th class="px-6 py-4 text-center font-semibold">χ(G)</th>
+                                <th class="px-6 py-4 text-center font-semibold">Coloración</th>
+                                <th class="px-6 py-4 text-left font-semibold">Notas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-pink-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Tetraedro</td>
+                                <td class="px-6 py-4 text-center text-2xl font-bold text-blue-600">4</td>
+                                <td class="px-6 py-4 text-center">Todos distintos</td>
+                                <td class="px-6 py-4">K_4 es el máximo planar</td>
+                            </tr>
+                            <tr class="hover:bg-pink-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Cubo</td>
+                                <td class="px-6 py-4 text-center text-2xl font-bold text-green-600">2</td>
+                                <td class="px-6 py-4 text-center">Bipartito</td>
+                                <td class="px-6 py-4">Colores alternados</td>
+                            </tr>
+                            <tr class="hover:bg-pink-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Octaedro</td>
+                                <td class="px-6 py-4 text-center text-2xl font-bold text-green-600">2</td>
+                                <td class="px-6 py-4 text-center">Bipartito</td>
+                                <td class="px-6 py-4">Vértices opuestos mismo color</td>
+                            </tr>
+                            <tr class="hover:bg-pink-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Dodecaedro</td>
+                                <td class="px-6 py-4 text-center text-2xl font-bold text-yellow-600">3</td>
+                                <td class="px-6 py-4 text-center">Cíclica</td>
+                                <td class="px-6 py-4">No bipartito</td>
+                            </tr>
+                            <tr class="hover:bg-pink-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Icosaedro</td>
+                                <td class="px-6 py-4 text-center text-2xl font-bold text-yellow-600">4</td>
+                                <td class="px-6 py-4 text-center">Compleja</td>
+                                <td class="px-6 py-4">Requiere 4 colores</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="theorem-box p-8 rounded-r-lg my-8 text-center">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">📐 Teorema de los Cuatro Colores (1976)</h3>
+                    <p class="text-gray-800 mb-4">
+                        Todo grafo planar puede colorearse con <strong>cuatro colores</strong>.
+                    </p>
+                    <div class="text-3xl my-4 text-purple-900 font-bold">
+                        χ(G) ≤ 4
+                    </div>
+                    <p class="text-gray-600">
+                        Para todo grafo planar G
+                    </p>
+                    <p class="text-gray-500 text-sm mt-4">
+                        Demostrado por Appel y Haken usando reducción a casos y verificación computacional.
+                    </p>
+                </div>
+
+                <div class="highlight-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">⚠️ Grafo de Grado Máximo</h3>
+                    <p class="text-gray-800">
+                        El tetraedro tiene χ = 4, demostrando que el límite del teorema de los 4 colores es 
+                        <strong>ajustado</strong>. No existe grafo planar que requiera 5 colores (por el teorema), 
+                        pero K_4 alcanza el límite de 4.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Caminos Hamiltonianos -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. Caminos Hamiltonianos en Poliedros</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.1 Definición</h3>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Camino Hamiltoniano</h3>
+                    <p class="text-gray-800 mb-4">
+                        Un <strong>camino hamiltoniano</strong> es un recorrido en el grafo que visita cada vértice 
+                        exactamente una vez. Si el camino cierra (regresa al inicio), es un <strong>ciclo hamiltoniano</strong>.
+                    </p>
+                    <p class="text-gray-700">
+                        El problema de determinar si un grafo tiene un camino hamiltoniano es <strong>NP-completo</strong>.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.2 Hamiltonicidad de los Sólidos Platónicos</h3>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-orange-600 to-orange-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Sólido</th>
+                                <th class="px-6 py-4 text-center font-semibold">Camino H.</th>
+                                <th class="px-6 py-4 text-center font-semibold">Ciclo H.</th>
+                                <th class="px-6 py-4 text-left font-semibold">Número de ciclos H.</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-orange-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Tetraedro</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4">3</td>
+                            </tr>
+                            <tr class="hover:bg-orange-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Cubo</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4">6</td>
+                            </tr>
+                            <tr class="hover:bg-orange-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Octaedro</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4">Múltiples</td>
+                            </tr>
+                            <tr class="hover:bg-orange-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Dodecaedro</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4">2560</td>
+                            </tr>
+                            <tr class="hover:bg-orange-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Icosaedro</td>
+                                <td class="px-6 py-4 text-center text-green-600 font-bold">Sí</td>
+                                <td class="px-6 py-4 text-center text-red-600 font-bold">No</td>
+                                <td class="px-6 py-4">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 El Dodecaedro y Hamilton</h3>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>problema del icosian</strong> fue inventado por William Rowan Hamilton en 1857. 
+                        Consiste en encontrar un ciclo hamiltoniano en el grafo del dodecaedro (que tiene 20 vértices).
+                    </p>
+                    <p class="text-gray-700">
+                        Hamilton vendió este juego como un rompecabezas con clavijas y cuerdas. El objetivo era 
+                        visitar cada ciudad (vértice) exactamente una vez y regresar al inicio, formando un ciclo.
+                    </p>
+                    <p class="text-center font-mono text-lg text-green-900 mt-4">
+                        El dodecaedro tiene exactamente 2560 ciclos hamiltonianos distintos.
+                    </p>
+                </div>
+
+                <div class="highlight-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">⚠️ El Icosaedro no es Hamiltoniano</h3>
+                    <p class="text-gray-800">
+                        Sorprendentemente, el <strong>icosaedro</strong> no tiene ciclos hamiltonianos, aunque sí 
+                        tiene caminos hamiltonianos. Esto se debe a su estructura: es un grafo 5-regular que no 
+                        admite ciclos que visiten todos los vértices exactamente una vez.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Optimización Combinatoria -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">5. Optimización Combinatoria</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.1 Problemas en Grafos de Poliedros</h3>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Problema del Viajante (TSP)</h4>
+                        <p class="text-gray-700 mb-3">
+                            Encontrar el ciclo hamiltoniano de <strong>mínima longitud</strong> en un grafo ponderado.
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            En poliedros regulares con aristas de longitud 1, cualquier ciclo hamiltoniano 
+                            tiene longitud V (número de vértices).
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Empaquetamiento de Vértices</h4>
+                        <p class="text-gray-700 mb-3">
+                            Encontrar el <strong>conjunto independiente máximo</strong> (vértices no adyacentes).
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            En el cubo: 4 vértices (la mitad). En el icosaedro: 3 vértices.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.2 Árbol de Expansión Mínima</h3>
+
+                <div class="algorithm-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-pink-900 mb-3">🔧 Algoritmo de Kruskal</h3>
+                    <p class="text-gray-800 mb-4">
+                        Para encontrar el árbol de expansión mínima (MST) de un grafo ponderado:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>Ordenar todas las aristas por peso creciente</li>
+                        <li>Agregar la arista de menor peso que no forme ciclo</li>
+                        <li>Repetir hasta tener |V| - 1 aristas</li>
+                    </ol>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Complejidad:</strong> O(E log E) debido al ordenamiento.
+                    </p>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 MST del Dodecaedro</h3>
+                    <p class="text-gray-800 mb-4">
+                        Si todas las aristas tienen peso 1, cualquier árbol de expansión tiene peso |V| - 1 = 19.
+                    </p>
+                    <p class="text-gray-700">
+                        El número de árboles de expansión distintos en el dodecaedro es enorme, calculado mediante 
+                        el <strong>teorema de Kirchhoff</strong> (matrix-tree theorem).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Ejercicios -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">6. Ejercicios y Problemas</h2>
+            
+            <div class="space-y-6">
+                
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Coloración del Dodecaedro</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Demuestre que el grafo del dodecaedro puede colorearse con 3 colores. 
+                        Proporcione una coloración explícita describiendo qué vértices reciben cada color.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Ciclos Hamiltonianos</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        El dodecaedro tiene 2560 ciclos hamiltonianos. Sin embargo, considerando simetrías rotacionales, 
+                        ¿cuántos ciclos esencialmente distintos existen? (Divida por el orden del grupo de rotaciones).
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Independencia</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Encuentre el tamaño del conjunto independiente máximo α(G) para cada sólido platónico. 
+                        Demuestre sus respuestas usando propiedades geométricas.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Distancia en el Cubo</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        En el grafo del cubo, calcule la distancia (número de aristas en el camino más corto) 
+                        entre vértices opuestos. Generalice para el hipercubo n-dimensional.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Teorema de Kirchhoff</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Use el teorema de Kirchhoff para calcular el número de árboles de expansión del grafo del cubo. 
+                        El Laplaciano L = D - A, donde D es la matriz de grados y A la matriz de adyacencia.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">6</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Grafo Dual</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Construya el grafo dual del tetraedro, cubo y octaedro. Demuestre que el dual del grafo 
+                        del cubo es el grafo del octaedro, y viceversa.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Resumen -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. Resumen del Módulo</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <div class="bg-gradient-to-r from-rose-50 to-pink-50 p-8 rounded-xl border border-rose-200">
+                    <h3 class="text-xl font-bold text-rose-900 mb-6">📋 Conceptos Clave</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Grafos de Poliedros</h4>
+                            <p class="text-gray-700 text-sm">
+                                Los grafos esqueleto capturan la estructura combinatoria. Son grafos planares 
+                                3-conexos (teorema de Steinitz).
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Coloración</h4>
+                            <p class="text-gray-700 text-sm">
+                                Teorema de los 4 colores: todo grafo planar tiene χ ≤ 4. El tetraedro alcanza 
+                                este límite con χ = 4.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Caminos Hamiltonianos</h4>
+                            <p class="text-gray-700 text-sm">
+                                El dodecaedro tiene 2560 ciclos hamiltonianos (problema del icosian). 
+                                El icosaedro no tiene ciclos hamiltonianos.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Optimización</h4>
+                            <p class="text-gray-700 text-sm">
+                                Problemas de empaquetamiento, TSP, y MST en grafos de poliedros. Complejidad 
+                                computacional NP-completa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theorem-box p-6 rounded-r-lg mt-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">🎯 Resultados Fundamentales</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-800">
+                        <li>Los grafos de poliedros son planares y 3-conexos (teorema de Steinitz).</li>
+                        <li>χ(G) ≤ 4 para todo grafo planar (teorema de los 4 colores).</li>
+                        <li>El tetraedro (K₄) es el único sólido platónico con χ = 4.</li>
+                        <li>El dodecaedro tiene 2560 ciclos hamiltonianos.</li>
+                        <li>El icosaedro no es hamiltoniano (no tiene ciclos hamiltonianos).</li>
+                        <li>Los problemas de optimización en poliedros conectan geometría con computación.</li>
+                    </ul>
+                </div>
+
+                <p class="mt-8">
+                    En el próximo módulo, exploraremos <strong>aplicaciones modernas</strong> de estos conceptos: 
+                    cristalografía, virología, química molecular y nanotecnología.
+                </p>
+            </div>
+        </section>
+
+        <!-- Referencias -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Referencias</h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">📚 Bibliografía</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-rose-600 font-bold">[1]</span>
+                        <span>West, D. B. (2001). <em>Introduction to Graph Theory</em> (2nd ed.). Prentice Hall.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-rose-600 font-bold">[2]</span>
+                        <span>Appel, K. & Haken, W. (1976). "Every planar map is four colorable". <em>Bulletin of the AMS</em>.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-rose-600 font-bold">[3]</span>
+                        <span>Biggs, N. L. (1993). "The icosian calculus of today". <em>Proceedings of the Royal Irish Academy</em>.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-rose-600 font-bold">[4]</span>
+                        <span>Thomassen, C. (1981). "Kuratowski's theorem". <em>Journal of Graph Theory</em>.</span>
+                    </li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-4 mt-8">🌐 Recursos Complementarios</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>PlatonicLab - Visualizaciones de grafos de poliedros y algoritmos.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>NetworkX - Biblioteca Python para análisis de grafos.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>The Hamiltonian Page - Recursos sobre ciclos hamiltonianos.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 mb-2">Módulo 5: Geometría Moderna - Teoría de Grafos y Optimización</p>
+            <p class="text-gray-500 text-sm">PlatonicLab • Curso de Matemáticas Visuales</p>
+            <p class="text-gray-600 text-xs mt-4">EigenLab Mathematics • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Render LaTeX formulas
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Aplicaciones Modernas - De Platón al Mundo Real</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .concept-box {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .theorem-box {
+            border-left: 4px solid #8b5cf6;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+        .example-box {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+        .highlight-box {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+        .exercise-box {
+            border: 2px solid #6366f1;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+        .app-card {
+            transition: all 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-900 via-teal-800 to-emerald-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Módulo 4</span>
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Aplicaciones</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Aplicaciones Modernas</h1>
+            <p class="text-xl text-teal-100 max-w-3xl">De Platón al Mundo Real: Cristalografía, Virología y Nanotecnología</p>
+            <p class="text-teal-200 mt-4 text-sm">PlatonicLab • Curso Universitario</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Introducción -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">1. Introducción: La Geometría en la Naturaleza</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    Después de explorar la teoría matemática de los sólidos platónicos, nos preguntamos: 
+                    <strong>¿dónde encontramos estas formas en el mundo real?</strong> La respuesta es: en todas partes. 
+                    Desde la estructura molecular del hielo hasta los virus que causan enfermedades, desde los cristales 
+                    minerales hasta los materiales de última generación.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Principio de Optimización</h3>
+                    <p class="text-gray-800">
+                        La naturaleza "elige" formas geométricas que minimizan energía, maximizan estabilidad, 
+                        o optimizan alguna función objetivo. Los sólidos platónicos y sus derivados surgen 
+                        naturalmente cuando el sistema busca <strong>simetría máxima con mínima complejidad</strong>.
+                    </p>
+                </div>
+
+                <p class="mb-4">
+                    En este módulo exploraremos cuatro áreas donde los sólidos platónicos juegan un papel fundamental:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="app-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">💎</span>
+                            <h3 class="text-xl font-bold text-gray-900">Cristalografía</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Estructura de minerales, redes cristalinas, y la clasificación de sólidos periódicos.
+                        </p>
+                    </div>
+
+                    <div class="app-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🦠</span>
+                            <h3 class="text-xl font-bold text-gray-900">Virología</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Capsídeos virales icosaédricos, eficiencia estructural, y diseño de vacunas.
+                        </p>
+                    </div>
+
+                    <div class="app-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">⚗️</span>
+                            <h3 class="text-xl font-bold text-gray-900">Química</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Geometría molecular, clusters metálicos, y fullerenos (materiales del futuro).
+                        </p>
+                    </div>
+
+                    <div class="app-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🔬</span>
+                            <h3 class="text-xl font-bold text-gray-900">Nanotecnología</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Meta-materiales, fotónica, encapsulación de fármacos, y materiales avanzados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Cristalografía -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">2. Cristalografía: La Geometría de los Minerales</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.1 Sistemas Cristalinos y Grupos Espaciales</h3>
+
+                <p class="mb-4">
+                    Los cristales son sólidos con estructura atómica periódica. La cristalografía clasifica 
+                    estas estructuras en <strong>7 sistemas cristalinos</strong> y <strong>230 grupos espaciales</strong>, 
+                    desarrollados a partir de la teoría de grupos estudiada en el Módulo 3.
+                </p>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-teal-600 to-teal-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Sistema Cristalino</th>
+                                <th class="px-6 py-4 text-center font-semibold">Restricciones</th>
+                                <th class="px-6 py-4 text-center font-semibold">Grupos Puntuales</th>
+                                <th class="px-6 py-4 text-left font-semibold">Ejemplo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Cúbico</td>
+                                <td class="px-6 py-4 text-center">$a = b = c$, $\alpha = \beta = \gamma = 90°$</td>
+                                <td class="px-6 py-4 text-center font-mono">5</td>
+                                <td class="px-6 py-4">Sal (NaCl), Diamante</td>
+                            </tr>
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Tetragonal</td>
+                                <td class="px-6 py-4 text-center">$a = b \neq c$, $\alpha = \beta = \gamma = 90°$</td>
+                                <td class="px-6 py-4 text-center font-mono">7</td>
+                                <td class="px-6 py-4">Estaño blanco, Zirconio</td>
+                            </tr>
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Ortorrómbico</td>
+                                <td class="px-6 py-4 text-center">$a \neq b \neq c$, $\alpha = \beta = \gamma = 90°$</td>
+                                <td class="px-6 py-4 text-center font-mono">3</td>
+                                <td class="px-6 py-4">Yeso, Barita</td>
+                            </tr>
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Hexagonal</td>
+                                <td class="px-6 py-4 text-center">$a = b \neq c$, $\alpha = \beta = 90°$, $\gamma = 120°$</td>
+                                <td class="px-6 py-4 text-center font-mono">7</td>
+                                <td class="px-6 py-4">Cuarzo, Grafito</td>
+                            </tr>
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Trigonal</td>
+                                <td class="px-6 py-4 text-center">$a = b = c$, $\alpha = \beta = \gamma \neq 90°$</td>
+                                <td class="px-6 py-4 text-center font-mono">5</td>
+                                <td class="px-6 py-4">Calcita, Dolomita</td>
+                            </tr>
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Monoclínico</td>
+                                <td class="px-6 py-4 text-center">$a \neq b \neq c$, $\alpha = \gamma = 90° \neq \beta$</td>
+                                <td class="px-6 py-4 text-center font-mono">3</td>
+                                <td class="px-6 py-4">Azufre, Yeso</td>
+                            </tr>
+                            <tr class="hover:bg-teal-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Triclínico</td>
+                                <td class="px-6 py-4 text-center">$a \neq b \neq c$, $\alpha \neq \beta \neq \gamma$</td>
+                                <td class="px-6 py-4 text-center font-mono">2</td>
+                                <td class="px-6 py-4">Turquesa, Plagioclasa</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.2 El Sistema Cúbico y Sólidos Platónicos</h3>
+
+                <p class="mb-4">
+                    El <strong>sistema cristalino cúbico</strong> tiene la máxima simetría (grupo octaédrico $O_h$) 
+                    y está directamente relacionado con el cubo y el octaedro. Existen tres tipos de redes cúbicas:
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Cúbica Simple (SC)</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto">
+                                <rect x="25" y="25" width="50" height="50" fill="none" stroke="#666" stroke-width="2"/>
+                                <circle cx="25" cy="25" r="4" fill="#3b82f6"/>
+                                <circle cx="75" cy="25" r="4" fill="#3b82f6"/>
+                                <circle cx="25" cy="75" r="4" fill="#3b82f6"/>
+                                <circle cx="75" cy="75" r="4" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>1 átomo por celda</li>
+                            <li>Coordinación: 6</li>
+                            <li>Ejemplo: Polonio</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Cúbica Centrada en el Cuerpo (BCC)</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto">
+                                <rect x="25" y="25" width="50" height="50" fill="none" stroke="#666" stroke-width="2"/>
+                                <circle cx="25" cy="25" r="4" fill="#3b82f6"/>
+                                <circle cx="75" cy="25" r="4" fill="#3b82f6"/>
+                                <circle cx="25" cy="75" r="4" fill="#3b82f6"/>
+                                <circle cx="75" cy="75" r="4" fill="#3b82f6"/>
+                                <circle cx="50" cy="50" r="5" fill="#ef4444"/>
+                            </svg>
+                        </div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>2 átomos por celda</li>
+                            <li>Coordinación: 8</li>
+                            <li>Ejemplo: Hierro, Tungsteno</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Cúbica Centrada en las Caras (FCC)</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4 text-center">
+                            <svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto">
+                                <rect x="25" y="25" width="50" height="50" fill="none" stroke="#666" stroke-width="2"/>
+                                <circle cx="25" cy="25" r="4" fill="#3b82f6"/>
+                                <circle cx="75" cy="25" r="4" fill="#3b82f6"/>
+                                <circle cx="25" cy="75" r="4" fill="#3b82f6"/>
+                                <circle cx="75" cy="75" r="4" fill="#3b82f6"/>
+                                <circle cx="50" cy="25" r="4" fill="#10b981"/>
+                                <circle cx="50" cy="75" r="4" fill="#10b981"/>
+                                <circle cx="25" cy="50" r="4" fill="#10b981"/>
+                                <circle cx="75" cy="50" r="4" fill="#10b981"/>
+                            </svg>
+                        </div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>4 átomos por celda</li>
+                            <li>Coordinación: 12</li>
+                            <li>Ejemplo: Aluminio, Oro</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 Ejemplo: Diamante y Silicio</h3>
+                    <p class="text-gray-800 mb-4">
+                        El diamante (carbono) y el silicio cristalino forman una <strong>red de diamante</strong>, 
+                        que puede verse como dos redes FCC interpenetradas, desplazadas $\frac{1}{4}$ de la diagonal espacial.
+                    </p>
+                    <p class="text-gray-700">
+                        Cada átomo de carbono está tetraédricamente coordinado con otros 4 átomos, formando 
+                        una estructura que es <strong>topológicamente un grafo tetraédrico extendido</strong>. 
+                        Esta configuración maximiza la estabilidad química y explica la dureza extrema del diamante.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2.3 La Ley de Hauy</h3>
+
+                <div class="theorem-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">📐 Principio de Constancia de Ángulos</h3>
+                    <p class="text-gray-800 mb-4">
+                        <strong>Ley de Hauy (1784):</strong> Los ángulos diedros entre caras correspondientes de 
+                        cristales de la misma sustancia son constantes, independientemente del tamaño y la forma 
+                        del cristal.
+                    </p>
+                    <p class="text-gray-700">
+                        Esta ley fue fundamental para el desarrollo de la cristalografía moderna. Por ejemplo, 
+                        todos los cristales de cuarzo forman ángulos de $120°$ entre sus caras prismáticas, 
+                        reflejando la simetría hexagonal de su estructura interna.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Virología -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Virología: La Geometría de los Virus</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.1 Capsídeos Icosaédricos</h3>
+
+                <p class="mb-4">
+                    Un <strong>virus</strong> consiste en material genético (ADN o ARN) encapsulado en una 
+                    <strong>cápside</strong> proteica. Sorprendentemente, muchos virus usan estructuras 
+                    <strong>icosaédricas</strong> para sus cápsides.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 ¿Por Qué Icosaedros?</h3>
+                    <p class="text-gray-800 mb-4">
+                        La selección natural favorece estructuras que:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li><strong>Minimizan energía libre:</strong> La forma esférica minimiza la superficie/volumen.</li>
+                        <li><strong>Maximizan la economía genética:</strong> Usar una sola proteína repetida muchas veces 
+                            requiere menos información genética.</li>
+                        <li><strong>Maximizan la estabilidad estructural:</strong> El icosaedro es el poliedro más 
+                            "esférico" (mayor número de caras entre los platónicos).</li>
+                    </ol>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.2 Números de Triangulación (T-numbers)</h3>
+
+                <p class="mb-4">
+                    En 1962, Caspar y Klug desarrollaron una teoría para clasificar los capsídeos icosaédricos 
+                    basada en cómo se subdivide la superficie icosaédrica:
+                </p>
+
+                <div class="bg-gray-100 p-6 rounded-lg my-6 text-center">
+                    <p class="text-lg text-gray-800 mb-2">
+                        El <strong>número de triangulación</strong> $T$ se define como:
+                    </p>
+                    <p class="text-2xl font-bold text-teal-900 my-4">
+                        $$T = h^2 + hk + k^2$$
+                    </p>
+                    <p class="text-gray-600 text-sm">
+                        donde $h$ y $k$ son enteros no negativos que definen el vector de subdivisión en la red triangular.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Virus</th>
+                                <th class="px-6 py-4 text-center font-semibold">T-number</th>
+                                <th class="px-6 py-4 text-center font-semibold">Capsómeros</th>
+                                <th class="px-6 py-4 text-left font-semibold">Notas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-emerald-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Parvovirus</td>
+                                <td class="px-6 py-4 text-center font-mono">T=1</td>
+                                <td class="px-6 py-4 text-center">60</td>
+                                <td class="px-6 py-4">Estructura más simple, 60 subunidades idénticas</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Poliovirus</td>
+                                <td class="px-6 py-4 text-center font-mono">T=3</td>
+                                <td class="px-6 py-4 text-center">180</td>
+                                <td class="px-6 py-4">Virus de la poliomielitis</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Adenovirus</td>
+                                <td class="px-6 py-4 text-center font-mono">T=25</td>
+                                <td class="px-6 py-4 text-center">1500</td>
+                                <td class="px-6 py-4">Virus del resfriado común</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Herpesvirus</td>
+                                <td class="px-6 py-4 text-center font-mono">T=16</td>
+                                <td class="px-6 py-4 text-center">960</td>
+                                <td class="px-6 py-4">Virus del herpes simple</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">HIV (cápside)</td>
+                                <td class="px-6 py-4 text-center font-mono">T≈6-7</td>
+                                <td class="px-6 py-4 text-center">~420</td>
+                                <td class="px-6 py-4">Estructura icosaédrica imperfecta</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 Cálculo de Capsómeros</h3>
+                    <p class="text-gray-800 mb-4">
+                        Para un virus con número de triangulación $T$, el número total de capsómeros 
+                        (subunidades proteicas) es:
+                    </p>
+                    <div class="text-center text-xl font-bold text-green-900 my-4">
+                        $$N = 60T$$
+                    </div>
+                    <p class="text-gray-700">
+                        Esto se deriva del hecho de que un icosaedro tiene 60 rotaciones de simetría, 
+                        y cada subunidad proteica debe estar relacionada con 60 copias de sí misma 
+                        mediante estas simetrías.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">3.3 Implicaciones para Vacunas y Antivirales</h3>
+
+                <p class="mb-4">
+                    Comprender la geometría de los capsídeos virales tiene aplicaciones médicas directas:
+                </p>
+
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                    <li><strong>Diseño de vacunas:</strong> Las vacunas contra el VPH (virus del papiloma humano) 
+                        usan <strong>virus-like particles (VLPs)</strong> que imitan la estructura icosaédrica 
+                        del virus real sin contener material genético infeccioso.</li>
+                    <li><strong>Desarrollo de antivirales:</strong> Moléculas que se unen a interfaces específicas 
+                        entre capsómeros pueden impedir el ensamblaje del virus.</li>
+                    <li><strong>Entrega de fármacos:</strong> Los VLPs pueden encapsular medicamentos y dirigirse 
+                        a células específicas.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Química -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. Química: Geometría Molecular</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.1 Teoría de Repulsión de Pares Electrónicos</h3>
+
+                <p class="mb-4">
+                    La <strong>Teoría VSEPR</strong> (Valence Shell Electron Pair Repulsion) predice la geometría 
+                    molecular basándose en la repulsión entre pares de electrones de valencia. Cuando los electrones 
+                    se organizan para minimizar repulsión, surgen configuraciones que reconocemos como sólidos platónicos.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Tetraedro (4 pares)</h4>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <p class="text-center text-2xl font-bold text-blue-900">AX₄</p>
+                        </div>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li><strong>Ángulo:</strong> 109.5°</li>
+                            <li><strong>Ejemplo:</strong> CH₄ (metano)</li>
+                            <li><strong>Ejemplo:</strong> SO₄²⁻ (ion sulfato)</li>
+                            <li><strong>Ejemplo:</strong> NH₄⁺ (ion amonio)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Octaedro (6 pares)</h4>
+                        <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                            <p class="text-center text-2xl font-bold text-purple-900">AX₆</p>
+                        </div>
+                        <ul class="space-y-2 text-gray-700 text-sm">
+                            <li><strong>Ángulo:</strong> 90°</li>
+                            <li><strong>Ejemplo:</strong> SF₆ (hexafluoruro de azufre)</li>
+                            <li><strong>Ejemplo:</strong> [Co(NH₃)₆]³⁺ (complejo de cobalto)</li>
+                            <li><strong>Ejemplo:</strong> Fe(CN)₆⁴⁻ (ion ferrocianuro)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 El Metano: Tetraedro Perfecto</h3>
+                    <p class="text-gray-800 mb-4">
+                        La molécula de metano (CH₄) es un <strong>tetraedro regular</strong>. El átomo de carbono 
+                        está en el centro, y los cuatro átomos de hidrógeno ocupan los vértices de un tetraedro.
+                    </p>
+                    <p class="text-gray-700 mb-2">
+                        Esto maximiza la separación entre los cuatro pares de electrones enlazantes, minimizando 
+                        la repulsión electrostática. Los ángulos H-C-H son exactamente:
+                    </p>
+                    <div class="text-center text-xl font-bold text-green-900 my-3">
+                        $$\cos^{-1}\left(-\frac{1}{3}\right) \approx 109.47°$$
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Este ángulo característico es conocido como el "ángulo tetraédrico" y aparece 
+                        en innumerables moléculas orgánicas.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.2 Fullerenos y Nanomateriales</h3>
+
+                <p class="mb-4">
+                    Los <strong>fullerenos</strong> son moléculas de carbono puras con forma de poliedros cerrados. 
+                    El más famoso es el <strong>C₆₀</strong> (buckminsterfullereno), llamado así por Buckminster Fuller, 
+                    inventor de las cúpulas geodésicas.
+                </p>
+
+                <div class="highlight-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-amber-900 mb-3">⚠️ Estructura del C₆₀</h3>
+                    <p class="text-gray-800 mb-4">
+                        El buckminsterfullereno tiene la estructura de un <strong>icosaedro truncado</strong> 
+                        (sólido de Arquímedes):
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>32 caras:</strong> 12 pentágonos (de los 12 vértices del icosaedro original) 
+                            y 20 hexágonos (de las 20 caras triangulares)</li>
+                        <li><strong>60 vértices:</strong> Un átomo de carbono en cada vértice</li>
+                        <li><strong>90 aristas:</strong> Enlaces C-C</li>
+                    </ul>
+                    <p class="text-center font-mono text-lg text-amber-900 mt-4">
+                        $V - E + F = 60 - 90 + 32 = 2$ ✓
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">4.3 Clusters Metálicos</h3>
+
+                <p class="mb-4">
+                    Los <strong>clusters metálicos</strong> son agregados de átomos metálicos que exhiben propiedades 
+                    intermedias entre átomos individuales y sólidos masivos. Muchos clusters adoptan estructuras poliédricas:
+                </p>
+
+                <div class="overflow-x-auto my-8">
+                    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gradient-to-r from-amber-600 to-amber-700 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Cluster</th>
+                                <th class="px-6 py-4 text-left font-semibold">Estructura</th>
+                                <th class="px-6 py-4 text-left font-semibold">Propiedades Notables</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-amber-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Au₁₃</td>
+                                <td class="px-6 py-4">Icosaedro</td>
+                                <td class="px-6 py-4">Alta estabilidad, catalítico</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">[Pb₅]²⁻</td>
+                                <td class="px-6 py-4">Pirámide cuadrada</td>
+                                <td class="px-6 py-4">Aromaticidad en clusters metálicos</td>
+                            </tr>
+                            <tr class="hover:bg-amber-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">[Sn₉]⁴⁻</td>
+                                <td class="px-6 py-4">Cappelo cuadrado antiprismático</td>
+                                <td class="px-6 py-4">Estructura similar al octaedro</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Nanotecnología -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">5. Nanotecnología: Materiales del Futuro</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.1 Meta-materiales y Fotónica</h3>
+
+                <p class="mb-4">
+                    Los <strong>meta-materiales</strong> son materiales artificiales con propiedades que no se 
+                    encuentran en la naturaleza, diseñados mediante estructuras periódicas a escala sub-longitud-de-onda.
+                </p>
+
+                <div class="concept-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">🔷 Cristales Fotónicos</h3>
+                    <p class="text-gray-800 mb-4">
+                        Los <strong>cristales fotónicos</strong> son estructuras periódicas de dieléctricos 
+                        que controlan la propagación de luz de manera análoga a cómo los cristales sólidos 
+                        controlan los electrones (banda prohibida fotónica).
+                    </p>
+                    <p class="text-gray-700">
+                        Los sólidos platónicos, especialmente el <strong>gyroid</strong> (mínima superficial 
+                        tri-periódica relacionada con la estructura de diamante), son usados para crear 
+                        cristales fotónicos con bandas prohibidas omnidireccionales.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.2 Encapsulación de Fármacos</h3>
+
+                <p class="mb-4">
+                    Los <strong>Metal-Organic Frameworks (MOFs)</strong> y <strong>Covalent Organic Frameworks (COFs)</strong> 
+                    son materiales porosos cristalinos con estructuras poliédricas que pueden encapsular y liberar moléculas:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">MOF-5 (IRMOF-1)</h4>
+                        <p class="text-gray-700 text-sm mb-3">
+                            Estructura cúbica con cavidades octaédricas. Superficie específica: 2900 m²/g 
+                            (equivalente a 3 campos de fútbol por gramo).
+                        </p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Almacenamiento de hidrógeno</li>
+                            <li>• Captura de CO₂</li>
+                            <li>• Liberación controlada de fármacos</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">ZIF-8</h4>
+                        <p class="text-gray-700 text-sm mb-3">
+                            Zeolitic Imidazolate Framework con topología de sodalita (poliedro truncado).
+                        </p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Alta estabilidad térmica y química</li>
+                            <li>• Puertas moleculares sensibles a pH</li>
+                            <li>• Entrega intracelular de proteínas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5.3 Robótica y Plegado de Proteínas</h3>
+
+                <p class="mb-4">
+                    La estructura poliédrica tiene aplicaciones sorprendentes en <strong>robótica modular</strong> 
+                    y <strong>biología sintética</strong>:
+                </p>
+
+                <div class="example-box p-6 rounded-r-lg my-8">
+                    <h3 class="text-lg font-bold text-green-900 mb-3">💡 DNA Origami</h3>
+                    <p class="text-gray-800 mb-4">
+                        El <strong>DNA origami</strong> es una técnica que usa la complementariedad del ADN 
+                        para plegar cadenas de una sola hebra en estructuras poliédricas predefinidas:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Tetraedros de ADN:</strong> Usados como contenedores para liberar fármacos 
+                            específicamente en células cancerígenas.</li>
+                        <li><strong>Icosaedros de ADN:</strong> Estructuras huecas que encapsulan virus artificiales 
+                            para terapia génica.</li>
+                        <li><strong>Cubos de ADN:</strong> Usados como nanorobots que pueden "caminar" sobre 
+                            superficies y transportar cargas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Ejercicios -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">6. Ejercicios y Problemas</h2>
+            
+            <div class="space-y-6">
+                
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Densidad de Empaquetamiento</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Calcule la <strong>densidad de empaquetamiento atómico</strong> para una red FCC 
+                        (cúbica centrada en las caras). Suponga átomos esféricos que se tocan a lo largo 
+                        de las diagonales de las caras.
+                    </p>
+                    <p class="text-gray-600 text-sm italic">
+                        Sugerencia: Relacione el radio atómico $r$ con el parámetro de red $a$, luego calcule 
+                        qué fracción del volumen de la celda unitaria está ocupada por átomos.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Número de Triangulación</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Calcule el número de triangulación $T$ para $(h,k) = (2,1)$ y determine cuántos capsómeros 
+                        tendría un virus con este número T. ¿Cuál es el patrón de interacción entre capsómeros 
+                        en la superficie icosaédrica?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Energía de Repulsión</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Suponga que los átomos de hidrógeno en el metano se repelen con una fuerza $F \propto 1/r^2$. 
+                        Demuestre que la configuración tetraédrica minimiza la energía total de repulsión 
+                        (suponiendo que la distancia H-H es fija).
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Fullerenos Gigantes</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        La fórmula de Euler establece que cualquier fullereno debe tener exactamente 12 pentágonos, 
+                        independientemente del número de hexágonos. Demuestre este resultado usando la fórmula de Euler 
+                        y el hecho de que cada vértice tiene grado 3.
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Superficie de MOF</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Un MOF cúbico tiene una celda unitaria de 30 Å de lado y una superficie interna de 2000 m²/g. 
+                        Si la densidad del material es 0.5 g/cm³, calcule el volumen de poro accesible por gramo de MOF. 
+                        ¿Qué fracción del volumen total es poro?
+                    </p>
+                </div>
+
+                <div class="exercise-box p-6 rounded-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">6</span>
+                        <h3 class="text-lg font-bold text-indigo-900">Eficiencia de Empaquetamiento</h3>
+                    </div>
+                    <p class="text-gray-800 mb-4">
+                        Compare la eficiencia de empaquetamiento (volumen ocupado por átomos / volumen total) entre 
+                        redes SC, BCC y FCC. ¿Cuál es más eficiente? ¿Por qué la naturaleza favorece estructuras FCC 
+                        y HCP (hexagonal compacta) en metales?
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="section-divider my-12"></div>
+
+        <!-- Resumen -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. Resumen del Módulo</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                
+                <div class="bg-gradient-to-r from-teal-50 to-emerald-50 p-8 rounded-xl border border-teal-200">
+                    <h3 class="text-xl font-bold text-teal-900 mb-6">📋 Conceptos Clave</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Cristalografía</h4>
+                            <p class="text-gray-700 text-sm">
+                                Los sólidos platónicos inspiran redes cristalinas cúbicas (SC, BCC, FCC). 
+                                La ley de Hauy conecta ángulos externos con estructura interna.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Virología</h4>
+                            <p class="text-gray-700 text-sm">
+                                Los capsídeos virales usan estructuras icosaédricas por eficiencia. 
+                                Números de triangulación T clasifican virus: $N = 60T$ capsómeros.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Química</h4>
+                            <p class="text-gray-700 text-sm">
+                                Geometría molecular tetraédrica (CH₄) y octaédrica (SF₆) minimiza repulsión. 
+                                Fullerenos (C₆₀) son icosaedros truncados con 12 pentágonos.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-2">Nanotecnología</h4>
+                            <p class="text-gray-700 text-sm">
+                                MOFs y COFs usan estructuras poliédricas para encapsulación. DNA origami 
+                                crea nanorobots poliédricos para entrega de fármacos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theorem-box p-6 rounded-r-lg mt-8">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3">🎯 Resultados Fundamentales</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-800">
+                        <li>Los 7 sistemas cristalinos incluyen el cúbico (máxima simetría) relacionado con cubo/octaedro.</li>
+                        <li>Los virus icosaédricos siguen la regla $N = 60T$ (teoría de Caspar-Klug).</li>
+                        <li>La geometría tetraédrica aparece universalmente en química orgánica (ángulo 109.5°).</li>
+                        <li>Los fullerenos tienen exactamente 12 pentágonos (topología esférica).</li>
+                        <li>Meta-materiales usan estructuras poliédricas para controlar luz y materia.</li>
+                        <li>La naturaleza optimiza energía, información genética y estabilidad estructural simultáneamente.</li>
+                    </ul>
+                </div>
+
+                <p class="mt-8">
+                    En el próximo módulo, exploraremos <strong>geometría moderna</strong>: teoría de grafos aplicada 
+                    a poliedros, optimización combinatoria, y algoritmos computacionales.
+                </p>
+            </div>
+        </section>
+
+        <!-- Referencias -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Referencias</h2>
+            
+            <div class="bg-white rounded-xl shadow-md p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">📚 Bibliografía</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-600 font-bold">[1]</span>
+                        <span>Hahn, T. (Ed.). (2006). <em>International Tables for Crystallography</em> (5th ed.). Springer.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-600 font-bold">[2]</span>
+                        <span>Caspar, D. L. D. & Klug, A. (1962). "Physical principles in the construction of regular viruses". 
+                        <em>Cold Spring Harbor Symposia on Quantitative Biology</em>, 27, 1-24.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-600 font-bold">[3]</span>
+                        <span>Kroto, H. W., et al. (1985). "C₆₀: Buckminsterfullerene". <em>Nature</em>, 318, 162-163.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-600 font-bold">[4]</span>
+                        <span>Yaghi, O. M., et al. (2003). "Designed synthesis of 3D covalent organic frameworks". 
+                        <em>Science</em>, 310, 1166-1170.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-600 font-bold">[5]</span>
+                        <span>Rothemund, P. W. K. (2006). "Folding DNA to create nanoscale shapes and patterns". 
+                        <em>Nature</em>, 440, 297-302.</span>
+                    </li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-4 mt-8">🌐 Recursos Complementarios</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>VIPERdb - Base de datos de estructuras virales icosaédricas.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>Cambridge Structural Database (CSD) - Estructuras cristalinas experimentales.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600 font-bold">▸</span>
+                        <span>CoRE MOF Database - Base de datos de estructuras MOF computacionalmente curadas.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 mb-2">Módulo 4: Aplicaciones Modernas - De Platón al Mundo Real</p>
+            <p class="text-gray-500 text-sm">PlatonicLab • Curso de Matemáticas Visuales</p>
+            <p class="text-gray-600 text-xs mt-4">EigenLab Mathematics • 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Render LaTeX formulas
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+
+</body>
+</html>
